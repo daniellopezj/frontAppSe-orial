@@ -3,27 +3,29 @@
     <h1> <strong>       <b> Colaboradoradores </b> </strong> </h1>
     <br>
     <div style="text-align: center">
-        <button mdbBtn type="button" block="true" color="success" outline="true" (click)="insert()" mdbWavesEffect>Insert</button>
+        <button mdbBtn type="button" block="true" color="success" outline="true" (click)="insert()" mdbWavesEffect>Insertar</button>
     </div>
     <br>
-    <table mdbTable>
-        <thead class="black white-text">
-            <tr>
-                <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-            </tr>
-        </thead>
-        <tbody>
 
-            <tr mdbTableCol *ngFor="let item of listInfo;let i = index">
-                <td>{{item.nombre}}</td>
-                <td> {{item.apellido}}</td>
-                <td>{{item.celular}}</td>
-                <td> <button mdbBtn type="button" color="danger" outline="true" (click)="delete(item.id_person)" mdbWavesEffect>Eliminar</button></td>
-                <td><button mdbBtn type="button" color="secondary" outline="true" (click)="update(item)" mdbWavesEffect>Actualizar</button></td>
-            </tr>
-        </tbody>
-    </table>
-
+    <div class="table-responsive-lg">
+        <table class="table">
+            <thead class="black white-text">
+                <tr>
+                    <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of listInfo;let i = index">
+                    <td>{{item.nombre}}</td>
+                    <td> {{item.apellido}}</td>
+                    <td> {{item.cedula}}</td>
+                    <td>{{item.celular}}</td>
+                    <td> <button mdbBtn type="button" color="danger" outline="true" (click)="delete(item.id_person)" mdbWavesEffect>Eliminar</button></td>
+                    <td><button mdbBtn type="button" color="secondary" outline="true" (click)="update(item)" mdbWavesEffect>Actualizar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <br>
 <br>

@@ -14,7 +14,7 @@ export class ColaboradoresComponent implements OnInit {
   message: string = "Persons";
   showinfo: boolean;
   listInfo: any;
-  headElements = [ 'Nombre', 'Apellido', 'Celular', 'eliminar', 'actualizar'];
+  headElements = [ 'Nombre', 'Apellido','Cedula', 'Celular', 'eliminar', 'actualizar'];
   name: number;
   sendperson: Person;
 
