@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-
+import { MaterialModule } from './material';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
 
@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
