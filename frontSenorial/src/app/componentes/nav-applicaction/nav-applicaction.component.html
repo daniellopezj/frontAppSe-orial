@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container ">
+<mat-sidenav-container class="sidenav-container sticky-top  ">
     <mat-sidenav #drawer mode="side" class="sidenav grey lighten-5" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list id="menu">

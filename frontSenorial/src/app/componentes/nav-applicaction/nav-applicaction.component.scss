@@ -18,6 +18,13 @@
     color: #039be5;
 }
 
+@media (max-width: 768px) {
+    .sidenav {
+        display: block;
+        text-align: center;
+    }
+}
+
 .p {
     font-size: 30px;
 }

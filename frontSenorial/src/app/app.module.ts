@@ -1,5 +1,5 @@
 import { AppRoutingModule } from './app-routing.module';
-
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +16,7 @@ import { ContainerComponent } from './componentes/container/container.component'
 import { ColaboradoresComponent } from './componentes/colaboradores/colaboradores.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { MatIconModule } from '@angular/material/icon';
+import { IUPersonComponent } from './componentes/iuperson/iuperson.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
     ContainerComponent,
     ColaboradoresComponent,
     InicioComponent,
+    IUPersonComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     LayoutModule,
     AppRoutingModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
