@@ -1,0 +1,43 @@
+<mat-sidenav-container class="sidenav-container ">
+    <mat-sidenav #drawer class="sidenav grey lighten-5" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list id="menu">
+            <a mat-list-item href="#"> Clientes</a>
+            <hr>
+            <a mat-list-item href="#"> Prestamos</a>
+            <hr>
+            <a mat-list-item href="#">Inversionistas</a>
+            <hr>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+            <span>Prestamos JK</span>
+            <span class="example-spacer"></span>
+            <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>Cuentas
+      </button>
+            <button mat-raised-button color="primary">
+        Salir
+      </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+          <mat-icon>done_outline</mat-icon>
+          <span>Pagos realizados</span>
+        </button>
+                <button mat-menu-item disabled>
+          <mat-icon>visibility</mat-icon>
+          <span>analisis de Ingresos</span>
+        </button>
+                <button mat-menu-item>
+          <mat-icon>close</mat-icon>
+          <span>Por pagar</span>
+        </button>
+            </mat-menu>
+        </mat-toolbar>
+        <!-- Add Content Here -->
+    </mat-sidenav-content>
+</mat-sidenav-container>
