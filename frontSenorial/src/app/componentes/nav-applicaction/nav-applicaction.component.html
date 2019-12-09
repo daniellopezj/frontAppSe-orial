@@ -2,40 +2,47 @@
     <mat-sidenav #drawer class="sidenav grey lighten-5" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list id="menu">
-            <a mat-list-item href="#"> Clientes</a>
+            <a (click)="sidenav.toggle()" mat-list-item [routerLink]="['']"> Inicio</a>
             <hr>
-            <a mat-list-item href="#"> Prestamos</a>
+            <a (click)="sidenav.toggle()" mat-list-item [routerLink]="['colaboradores']"> Colaboradores</a>
             <hr>
-            <a mat-list-item href="#">Inversionistas</a>
+            <a (click)="sidenav.toggle()" mat-list-item href="#"> Servicios Realizados</a>
+            <hr>
+            <a (click)="sidenav.toggle()" mat-list-item href="#">Servicios Pendientes</a>
             <hr>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar color="primary">
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-            <span>Prestamos JK</span>
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <span>App Señorial</span>
             <span class="example-spacer"></span>
             <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
-        <mat-icon>more_vert</mat-icon>Cuentas
-      </button>
+                  <mat-icon>more_vert</mat-icon>Servicios
+             </button>
+            <button mat-raised-button color="primary" [matMenuTriggerFor]="datos">
+                <mat-icon>data_usage</mat-icon>Mis datos
+            </button>
             <button mat-raised-button color="primary">
-        Salir
-      </button>
+                Salir
+            </button>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item>
           <mat-icon>done_outline</mat-icon>
-          <span>Pagos realizados</span>
-        </button>
-                <button mat-menu-item disabled>
-          <mat-icon>visibility</mat-icon>
-          <span>analisis de Ingresos</span>
+          <span>Realizados</span>
         </button>
                 <button mat-menu-item>
-          <mat-icon>close</mat-icon>
-          <span>Por pagar</span>
+          <mat-icon>visibility</mat-icon>
+          <span>Pendientes</span>
         </button>
+            </mat-menu>
+            <mat-menu #datos="matMenu">
+                <button mat-menu-item>
+                    <mat-icon>update</mat-icon>
+                    <span>actualizar</span>
+                </button>
             </mat-menu>
         </mat-toolbar>
         <!-- Add Content Here -->
