@@ -1,14 +1,14 @@
 <mat-sidenav-container class="sidenav-container ">
-    <mat-sidenav #drawer class="sidenav grey lighten-5" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
+    <mat-sidenav #drawer mode="side" class="sidenav grey lighten-5" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list id="menu">
-            <a (click)="sidenav.toggle()" mat-list-item [routerLink]="['']"> Inicio</a>
+            <a (click)="hideShow()" mat-list-item [routerLink]="['']"> Inicio</a>
             <hr>
-            <a (click)="sidenav.toggle()" mat-list-item [routerLink]="['colaboradores']"> Colaboradores</a>
+            <a (click)="hideShow()" mat-list-item [routerLink]="['colaboradores']"> Colaboradores</a>
             <hr>
-            <a (click)="sidenav.toggle()" mat-list-item href="#"> Servicios Realizados</a>
+            <a (click)="hideShow()" mat-list-item href="#"> Servicios Realizados</a>
             <hr>
-            <a (click)="sidenav.toggle()" mat-list-item href="#">Servicios Pendientes</a>
+            <a (click)="hideShow()" mat-list-item href="#">Servicios Pendientes</a>
             <hr>
         </mat-nav-list>
     </mat-sidenav>

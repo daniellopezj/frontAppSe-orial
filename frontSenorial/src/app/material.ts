@@ -1,5 +1,4 @@
 import {MatButtonModule} from '@angular/material/button';
-
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
@@ -15,6 +14,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatCardModule} from '@angular/material/card';
+import { MatSidenavModule } from '@angular/material/sidenav';
 @NgModule({
     imports: [MatButtonModule,
         MatToolbarModule,
@@ -31,6 +31,7 @@ import {MatCardModule} from '@angular/material/card';
         MatProgressSpinnerModule,
         MatPaginatorModule,
         MatCardModule,
+        MatSidenavModule
     ],
     exports: [MatButtonModule,
         MatToolbarModule,
@@ -47,6 +48,7 @@ import {MatCardModule} from '@angular/material/card';
         MatProgressSpinnerModule,
         MatPaginatorModule,
         MatCardModule,
+        MatSidenavModule
     ]
 })
 export class MaterialModule { }

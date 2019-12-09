@@ -11,9 +11,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { NavApplicactionComponent } from './componentes/nav-applicaction/nav-applicaction.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
+
 import { ContainerComponent } from './componentes/container/container.component';
 import { ColaboradoresComponent } from './componentes/colaboradores/colaboradores.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -36,9 +34,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatGridListModule,
     MatButtonModule,
     LayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
     AppRoutingModule,
     MatIconModule
   ],
