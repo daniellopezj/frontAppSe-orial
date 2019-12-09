@@ -11,7 +11,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { NavApplicactionComponent } from './componentes/nav-applicaction/nav-applicaction.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { ContainerComponent } from './componentes/container/container.component';
 import { ColaboradoresComponent } from './componentes/colaboradores/colaboradores.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -38,7 +38,12 @@ import { IUPersonComponent } from './componentes/iuperson/iuperson.component';
     LayoutModule,
     AppRoutingModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
+  ],
+  entryComponents:[
+     IUPersonComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

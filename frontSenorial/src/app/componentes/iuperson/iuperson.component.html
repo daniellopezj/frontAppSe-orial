@@ -1,1 +1,35 @@
-<p>iuperson works!</p>
+<div style="align-items: center" class=" prin">
+    <div class=" text-center">
+        <h4 class=" w-100 font-weight-bold">
+            {{tittle}} </h4>
+    </div>
+    <br>
+    <div class="container">
+        <form [formGroup]="registerForm" (ngSubmit)="insertOrUpdatePerson()">
+            <input placeholder="Nombre*" type="text" formControlName="nombre" class="form-control medio" [(ngModel)]="person.nombre" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
+            <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                <div *ngIf="f.nombre.errors.required">Nombre Requerido</div>
+            </div>
+            <br>
+            <input placeholder="Apellido*" type="text" formControlName="apellido" class="form-control medio" [(ngModel)]="person.apellido" [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }" />
+            <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+                <div *ngIf="f.apellido.errors.required">Apellido Requerido</div>
+            </div>
+            <br>
+            <input placeholder="N. Documento*" type="text" formControlName="cedula" class="form-control" [(ngModel)]="person.cedula" [ngClass]="{ 'is-invalid': submitted && f.cedula.errors }" />
+            <div *ngIf="submitted && f.cedula.errors" class="invalid-feedback">
+                <div *ngIf="f.cedula.errors.required">Documento Requerido</div>
+            </div>
+            <br>
+
+            <input placeholder="celular*" type="text" formControlName="celular" class="form-control" [(ngModel)]="person.celular" [ngClass]="{ 'is-invalid': submitted && f.celular.errors }" />
+            <div *ngIf="submitted && f.celular.errors" class="invalid-feedback">
+                <div *ngIf="f.celular.errors.required">Celular Requerido</div>
+            </div>
+            <br>
+            <div class="form-group md-8" style="text-align: center">
+                <button class="btn btn-primary">{{tittle}} </button>
+            </div>
+        </form>
+    </div>
+</div>
