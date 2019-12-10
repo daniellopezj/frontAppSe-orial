@@ -54,33 +54,30 @@ export class ColaboradoresComponent implements OnInit {
   }
 
   delete(id_person) {
-    /*   var opcion = confirm("¿Estas seguro(@)?");
+    var opcion = confirm("¿Estas seguro(@)?");
       if (opcion == true) {
-        this.NewsServices.deletePerson(id_person).subscribe(res => {
+        this.servicePerson.deletePerson(id_person).subscribe(res => {
           if (res['status'] == 200) {
-            this.NewsServices.requestPerson().subscribe(res => {
-              this.listInfo = res;
+            this.servicePerson.requestPerson().subscribe(res => {
+              this.listInfo = res.object;
             });
             console.log("hola");
           } else {
             alert("Ocurrio un error")
           }
         })
-      }*/
+      }
   }
 
   update(valor) {
-    /* const dialogRef = this.dialog.open(InsertUpdatePersonComponent, {
-       data: { name: 2, sendperson: valor }
-     });
-     dialogRef.afterClosed().subscribe(result => {
-       this.NewsServices.requestPerson().subscribe(res => {
-         this.listInfo = res;
-       });
-     });
-   }*/
+    const dialogRef = this.dialog.open(IUPersonComponent, {
+      width: '500px',
+      data: { name: 2, sendperson: valor }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.servicePerson.requestPerson().subscribe(res => {
+        this.listInfo = res.object;
+      });
+    });
   }
-
-
-
 }

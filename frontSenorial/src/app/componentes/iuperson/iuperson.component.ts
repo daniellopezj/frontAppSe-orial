@@ -65,7 +65,7 @@ export class IUPersonComponent implements OnInit {
   }
 
   insert() {
-    this.person.id_person = this.randomInt(100, 200);
+    this.person.id_person = this.randomInt(1000, 2000);
     this.servicePerson.insertPerson(this.person).subscribe(res => {
       if (res['status'] == 200) {
         alert("datos almacenados")
@@ -77,13 +77,7 @@ export class IUPersonComponent implements OnInit {
   }
 
   update() {
-    let p = new Person();
-    p.id_person = this.person.id_person;
-    p.nombre = this.person.nombre;
-    p.apellido = this.person.apellido;
-    p.cedula = this.person.cedula;
-    p.celular = this.person.celular;
-    this.servicePerson.UpdatePerson(p).subscribe(res => {
+    this.servicePerson.UpdatePerson(this.person).subscribe(res => {
       if (res['status'] == 200) {
         alert("datos actualizados")
         this.dialogRef.close();
