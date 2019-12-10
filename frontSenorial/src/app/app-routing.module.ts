@@ -2,10 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ColaboradoresComponent } from './componentes/colaboradores/colaboradores.component';
 import { ContainerComponent } from './componentes/container/container.component';
+import { SpendientesComponent } from './componentes/spendientes/spendientes.component';
+import { SrealizadosComponent } from './componentes/srealizados/srealizados.component';
 
 const routes: Routes = [
     { path: 'container', component: ContainerComponent },
     { path: 'colaboradores', component: ColaboradoresComponent },
+    { path: 'pendienes', component: SpendientesComponent },
+    { path: 'realizados', component: SrealizadosComponent },
 ];
 
 @NgModule({

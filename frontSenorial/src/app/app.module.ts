@@ -17,6 +17,8 @@ import { ColaboradoresComponent } from './componentes/colaboradores/colaboradore
 import { InicioComponent } from './inicio/inicio.component';
 import { MatIconModule } from '@angular/material/icon';
 import { IUPersonComponent } from './componentes/iuperson/iuperson.component';
+import { SpendientesComponent } from './componentes/spendientes/spendientes.component';
+import { SrealizadosComponent } from './componentes/srealizados/srealizados.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { IUPersonComponent } from './componentes/iuperson/iuperson.component';
     ColaboradoresComponent,
     InicioComponent,
     IUPersonComponent,
+    SpendientesComponent,
+    SrealizadosComponent,
   ],
   imports: [
     BrowserModule,
