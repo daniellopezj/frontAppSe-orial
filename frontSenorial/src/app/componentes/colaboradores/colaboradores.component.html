@@ -20,8 +20,8 @@
                     <td> {{item.apellido}}</td>
                     <td> {{item.cedula}}</td>
                     <td>{{item.celular}}</td>
-                    <td> <button mdbBtn type="button" color="danger" outline="true" (click)="delete(item.id_person)" mdbWavesEffect>Eliminar</button></td>
-                    <td><button mdbBtn type="button" color="secondary" outline="true" (click)="update(item)" mdbWavesEffect>Actualizar</button></td>
+                    <td> <button mdbBtn type="button" color="danger" outline="true" (click)="delete(item.id_person)" mdbWavesEffect><i class="fas fa-trash pr-2"></i>Eliminar</button></td>
+                    <td><button mdbBtn type="button" color="secondary" outline="true" (click)="update(item)" mdbWavesEffect><i class="fas fa-edit pr-2"></i>Actualizar</button></td>
                 </tr>
             </tbody>
         </table>
