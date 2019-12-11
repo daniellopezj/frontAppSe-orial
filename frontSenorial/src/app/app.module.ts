@@ -14,7 +14,7 @@ import { NavApplicactionComponent } from './componentes/nav-applicaction/nav-app
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContainerComponent } from './componentes/container/container.component';
 import { ColaboradoresComponent } from './componentes/colaboradores/colaboradores.component';
-import { InicioComponent } from './inicio/inicio.component';
+import { InicioComponent } from './componentes/inicio/inicio.component';
 import { MatIconModule } from '@angular/material/icon';
 import { IUPersonComponent } from './componentes/iuperson/iuperson.component';
 import { SpendientesComponent } from './componentes/spendientes/spendientes.component';

@@ -6,11 +6,12 @@
             <hr>
             <a (click)="hideShow()" mat-list-item [routerLink]="['colaboradores']"> Colaboradores<mat-icon class="pl-2">people_outline</mat-icon></a>
             <hr>
-            <a (click)="hideShow()" mat-list-item [routerLink]="['pendienes']">Servicios Pendientes <mat-icon class="pl-2">visibility</mat-icon></a>
+            <a (click)="hideShow()" mat-list-item [routerLink]="['pendienes']">Servicios Pendientes <mat-icon class="pl-2">history</mat-icon></a>
             <hr>
-            <a (click)="hideShow()" mat-list-item [routerLink]="['realizados']"> Servicios Realizados <mat-icon class="pl-2">history</mat-icon></a>
+            <a (click)="hideShow()" mat-list-item [routerLink]="['pendienes']">Servicios Asignados <mat-icon class="pl-2">visibility</mat-icon></a>
             <hr>
-
+            <a (click)="hideShow()" mat-list-item [routerLink]="['realizados']"> Servicios Realizados <mat-icon class="pl-2">done_outline</mat-icon></a>
+            <hr>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
