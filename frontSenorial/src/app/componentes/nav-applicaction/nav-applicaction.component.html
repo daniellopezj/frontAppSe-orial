@@ -6,9 +6,7 @@
             <hr>
             <a (click)="hideShow()" mat-list-item [routerLink]="['colaboradores']"> Colaboradores<mat-icon class="pl-2">people_outline</mat-icon></a>
             <hr>
-            <a (click)="hideShow()" mat-list-item [routerLink]="['pendienes']">Servicios Pendientes <mat-icon class="pl-2">history</mat-icon></a>
-            <hr>
-            <a (click)="hideShow()" mat-list-item [routerLink]="['pendienes']">Servicios Asignados <mat-icon class="pl-2">visibility</mat-icon></a>
+            <a (click)="hideShow()" mat-list-item [routerLink]="['asignados']">Servicios Asignados <mat-icon class="pl-2">visibility</mat-icon></a>
             <hr>
             <a (click)="hideShow()" mat-list-item [routerLink]="['realizados']"> Servicios Realizados <mat-icon class="pl-2">done_outline</mat-icon></a>
             <hr>
@@ -21,30 +19,34 @@
             </button>
             <span>App Señorial</span>
             <span class="example-spacer"></span>
+            <button mat-raised-button color="primary">
+                    ({{countNotifications}})pendientes
+               </button>
             <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
                   <mat-icon>more_vert</mat-icon>Servicios
              </button>
             <button mat-raised-button color="primary" [matMenuTriggerFor]="datos">
-                <mat-icon>data_usage</mat-icon>Mis datos
-            </button>
-            <button mat-raised-button color="primary">
-                Salir
+                <mat-icon>account_circle</mat-icon>Cuenta
             </button>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item>
-          <mat-icon>done_outline</mat-icon>
-          <span>Realizados</span>
-        </button>
+                    <mat-icon>done_outline</mat-icon>
+                    <span>Realizados</span>
+                </button>
                 <button mat-menu-item>
-          <mat-icon>visibility</mat-icon>
-          <span>Pendientes</span>
-        </button>
+                    <mat-icon>visibility</mat-icon>
+                    <span>Pendientes</span>
+                 </button>
             </mat-menu>
             <mat-menu #datos="matMenu">
                 <button mat-menu-item>
                     <mat-icon>update</mat-icon>
                     <span>actualizar</span>
                 </button>
+                <button mat-menu-item>
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>Salir</span>
+                    </button>
             </mat-menu>
         </mat-toolbar>
         <!-- Add Content Here -->
