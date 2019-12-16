@@ -7,6 +7,7 @@
     </div>
     <br>
     <div *ngFor="let item of listInfo;let i = index">
+
         <mdb-card borderColor="border-secondary">
             <mdb-card-header class="">
                 <h5> <strong> Solicitud de servicio </strong></h5>
@@ -29,14 +30,32 @@
                             <p>tipo de Servicio: <strong> {{item.tipoServicio}} </strong></p>
                             <p>Fecha de Servicio: <strong> {{item.fecha_servicio}} </strong></p>
                             <p>Horario: <strong> {{item.horario}} </strong></p>
-                            <p>Colaboradores: <strong> {{item.nColaboradores}} </strong></p>
+                            <div *ngIf="item.nColaboradores; then colaboradores else vehiculos"></div>
+                            <ng-template #colaboradores>
+                                <p>Colaboradores: <strong> {{item.nColaboradores}} </strong></p>
+                            </ng-template>
+                            <ng-template #vehiculos>
+                                <p>Vehiculos:<strong> {{item.nCarros}} </strong> </p>
+                            </ng-template>
                             <hr style="border-color:black" class="col-md-10">
                         </mdb-card-title>
                     </div>
                 </div>
-
                 <p>Valor total: <strong>$ {{item.valor}} </strong></p>
-                <a mdbBtn color="primary">Asignar</a>
+                <mat-form-field>
+                    <mat-select placeholder="Colaboradores" [formControl]="toppings" multiple>
+                        <mat-select-trigger>
+                            {{toppings.value ? toppings.value[0] : ''}}
+                            <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+                              (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'otro' : 'otros'}})
+                            </span>
+                        </mat-select-trigger>
+                        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br>
+                <button mdbBtn type="button" color="success" mdbWavesEffect><i class="fas fa-edit pr-2"></i>Asignar</button>
+                <button mdbBtn type="button" color="danger" mdbWavesEffect><i class="fas fa-trash pr-2"></i>Rechazar</button>
             </mdb-card-body>
             <mdb-card-footer class="text-muted">
                 <p>Fecha de solicitud: {{item.fecha}} </p>

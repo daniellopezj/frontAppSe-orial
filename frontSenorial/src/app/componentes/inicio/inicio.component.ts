@@ -1,6 +1,7 @@
 import { ServiceCleanService } from './../../Services/service-clean.service';
 import { Component, OnInit } from '@angular/core';
 import { WebsocketService } from 'src/app/Services/websocket.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-inicio',
@@ -10,6 +11,8 @@ import { WebsocketService } from 'src/app/Services/websocket.service';
 export class InicioComponent implements OnInit {
   showinfo: boolean;
   listInfo: any;
+  toppings = new FormControl();
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   constructor(private websocket: WebsocketService, private serviceClean:ServiceCleanService) {
     this.loadServicePending();
    }
