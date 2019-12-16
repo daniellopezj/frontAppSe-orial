@@ -24,6 +24,7 @@ export class IUPersonComponent implements OnInit {
   name: any;
   sendPerson: any;
   tittle: String;
+  
   constructor(private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<IUPersonComponent>,
     @Inject(MAT_DIALOG_DATA) public componentPerson: ColaboradoresComponent, private servicePerson: ServicePerson) {
@@ -65,7 +66,7 @@ export class IUPersonComponent implements OnInit {
   }
 
   insert() {
-    this.person.id_person = this.randomInt(1000, 2000);
+    this.person.id_person = this.randomInt(10000, 20000);
     this.servicePerson.insertPerson(this.person).subscribe(res => {
       if (res['status'] == 200) {
         alert("datos almacenados")

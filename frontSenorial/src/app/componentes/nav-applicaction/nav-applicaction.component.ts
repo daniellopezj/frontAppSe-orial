@@ -49,7 +49,6 @@ export class NavApplicactionComponent implements OnInit {
   hideShow() {
     if (window.screen.width <= 600) {
       this.drawer.toggle();
-      console.log("pequeño")
     }
   }
 }

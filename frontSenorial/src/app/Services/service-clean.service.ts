@@ -12,4 +12,9 @@ export class ServiceCleanService {
     public requestCountPending(): Observable<StatusServices> {
         return this.http.get<StatusServices>(`http://localhost:3000/Countpendientes/`);
     }
+
+    public requestServicePending(): Observable<StatusServices> {
+        return this.http.get<StatusServices>(`http://localhost:3000/pendientes/`);
+    }
+    
 }

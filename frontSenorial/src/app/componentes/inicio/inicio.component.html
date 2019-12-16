@@ -1,1 +1,48 @@
-<p>inicio works!</p>
+<mat-spinner class="spinner" *ngIf="!showinfo"></mat-spinner>
+<div *ngIf="showinfo" class="container ">
+    <div class="container">
+        <h2>
+            <Strong>Servicios Pendientes</Strong>
+        </h2>
+    </div>
+    <br>
+    <div *ngFor="let item of listInfo;let i = index">
+        <mdb-card borderColor="border-secondary">
+            <mdb-card-header class="">
+                <h5> <strong> Solicitud de servicio </strong></h5>
+            </mdb-card-header>
+            <mdb-card-body>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <mdb-card-title>
+                            <h5>Usuario</h5>
+                            <p>Nombre: <strong> {{item.nombre}} {{item.apellido}} </strong></p>
+                            <p>Direccion:<strong> {{item.direccion}}  </strong></p>
+                            <p>Celular:<strong> {{item.celular}}  </strong></p>
+                            <p>Correo:<strong> {{item.correo}}  </strong></p>
+                            <hr style="border-color:black" class="col-md-10">
+                        </mdb-card-title>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <mdb-card-title>
+                            <h5>Servicio de: <strong> {{item.nombreCategoria}} </strong> </h5>
+                            <p>tipo de Servicio: <strong> {{item.tipoServicio}} </strong></p>
+                            <p>Fecha de Servicio: <strong> {{item.fecha_servicio}} </strong></p>
+                            <p>Horario: <strong> {{item.horario}} </strong></p>
+                            <p>Colaboradores: <strong> {{item.nColaboradores}} </strong></p>
+                            <hr style="border-color:black" class="col-md-10">
+                        </mdb-card-title>
+                    </div>
+                </div>
+
+                <p>Valor total: <strong>$ {{item.valor}} </strong></p>
+                <a mdbBtn color="primary">Asignar</a>
+            </mdb-card-body>
+            <mdb-card-footer class="text-muted">
+                <p>Fecha de solicitud: {{item.fecha}} </p>
+            </mdb-card-footer>
+        </mdb-card>
+        <br><br>
+    </div>
+
+</div>
