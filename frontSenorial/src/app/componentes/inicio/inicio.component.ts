@@ -45,9 +45,7 @@ export class InicioComponent implements OnInit {
 
   createEmpFormGroup() {
     return this.formBuilder.group({
-      selectionOneCollaborator: ['', [Validators.required]],
-      selectionManyCollaborator: ['', [Validators.required]],
-      selectionVehicle: ['', [Validators.required]],
+      selection: ['', [Validators.required]],
     })
   }
 
@@ -86,11 +84,12 @@ export class InicioComponent implements OnInit {
   }
 
   asigned(id: number) {
-    console.log("hola")
     this.submitted[id] = true;
-    if (this.selectArray[id].invalid) {
+    console.log(this.selectArray.value[id]);
+    if (this.selectArray.controls[id].get('selection').value=="") {
       return;
     }
-    alert(id);
+    console.log("sadadsdsadasd")
+    
   }
 }
