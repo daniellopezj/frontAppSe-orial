@@ -41,41 +41,52 @@
                     </div>
                 </div>
                 <p>Valor total: <strong>$ {{item.valor}} </strong></p>
-                <div *ngIf="item.nColaboradores; then Selectcolaboradores else Selectvehiculos"></div>
-                <ng-template #Selectcolaboradores>
-                    <div *ngIf="item.nColaboradores>1; then SelectColaboradoresMas else  SelectColaboradores1"></div>
-                    <ng-template #SelectColaboradoresMas>
-                        <mat-form-field class="col-md-4 col-lg-4 col-sm-10 col-xs-12">
-                            <mat-select placeholder="Colaboradores" [formControl]="mascolaboradores" (selectionChange)="changed(item.nColaboradores)" [(value)]="multipleCol" multiple>
-                                <mat-option *ngFor="let colaborador of listColaboradores" [value]="colaborador">{{colaborador.nombre}} {{colaborador.apellido}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </ng-template>
+                <form [formGroup]="formAssigned">
+                    <div formArrayName="selectArray">
+                        <div [formGroupName]="i">
+                            <div *ngIf="item.nColaboradores; then Selectcolaboradores else Selectvehiculos"></div>
+                            <ng-template #Selectcolaboradores>
+                                <div *ngIf="item.nColaboradores>1; then SelectColaboradoresMas else  SelectColaboradores1"></div>
+                                <ng-template #SelectColaboradoresMas>
+                                    <mat-form-field class="col-md-4 col-lg-4 col-sm-10 col-xs-12">
+                                        <mat-select placeholder="Colaboradores" [formControl]="mascolaboradores" (selectionChange)="changed(item.nColaboradores)" [(value)]="multipleCol" multiple>
+                                            <mat-option *ngFor="let colaborador of listColaboradores" [value]="colaborador">{{colaborador.nombre}} {{colaborador.apellido}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </ng-template>
+                                <ng-template #SelectColaboradores1>
+                                    <mat-form-field class="col-md-4 col-lg-4 col-sm-10 col-xs-12" required>
+                                        <mat-label>Selecciona Colaborador</mat-label>
+                                        <!--MIRAR EL ADECUANDO USO DE ESTE ITEM.II-->
+                                        <mat-select [(value)]="item.ii" formControlName="selectionOneCollaborator" class="form-control" [ngClass]="{ 'is-invalid': submitted[i] && selectArray.controls[i].get('selectionOneCollaborator').errors }">
+                                            <mat-option *ngFor="let colaborador of listColaboradores" [(value)]="colaborador">{{colaborador.nombre}} {{colaborador.apellido}}</mat-option>
+                                        </mat-select>
+                                        <div *ngIf="submitted[i] && selectArray.controls[i].get('selectionOneCollaborator').errors?.required" class="invalid-feedback">
+                                            <div *ngIf="selectArray.controls[i].get('selectionOneCollaborator').errors?.required">Campo obligatorio</div>
+                                        </div>
+                                    </mat-form-field>
+                                    <p>You selected: {{item.ii}}</p>
+                                </ng-template>
+                            </ng-template>
+                            <ng-template #Selectvehiculos>
+                                <mat-form-field class="col-md-4 col-lg-4 col-sm-10 col-xs-12">
+                                    <mat-label>Selecciona Colaborador</mat-label>
+                                    <mat-select [(value)]="selected" formControlName="selectionVehicle" class="form-control" [ngClass]="{ 'is-invalid': submitted[i] && selectArray.controls[i].get('selectionVehicle').errors }">
+                                        <mat-option *ngFor="let colaborador of listColaboradores" [(value)]="colaborador">{{colaborador.nombre}} {{colaborador.apellido}}</mat-option>
+                                    </mat-select>
+                                    <div *ngIf="submitted[i] && selectArray.controls[i].get('selectionVehicle').errors?.required" class="invalid-feedback">
+                                        <div *ngIf="selectArray.controls[i].get('selectionVehicle').errors?.required">Campo obligatorio</div>
+                                    </div>
+                                </mat-form-field>
+                                <p>You selected: {{selected.id_person}}</p>
+                            </ng-template>
+                            <br>
+                            <button mdbBtn class="btn" color="success" (click)="asigned(i)" mdbWavesEffect><i class="fas fa-edit pr-2"  ></i>Asignar</button>
 
-                    <ng-template #SelectColaboradores1>
-                        <mat-form-field class="col-md-4 col-lg-4 col-sm-10 col-xs-12">
-                            <mat-label>Selecciona Colaborador</mat-label>
-                            <mat-select>
-                                <mat-option *ngFor="let colaborador of listColaboradores" [(value)]="colaborador">{{colaborador.nombre}} {{colaborador.apellido}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <p>You selected: {{colaborador}}</p>
-                    </ng-template>
-                </ng-template>
-                <ng-template #Selectvehiculos>
-                    <mat-form-field class="col-md-4 col-lg-4 col-sm-10 col-xs-12">
-                        <mat-label>Selecciona Colaborador</mat-label>
-                        <mat-select>
-                            <mat-option *ngFor="let colaborador of listColaboradores" [(value)]="colaborador">{{colaborador.nombre}} {{colaborador.apellido}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <p>You selected: {{colaborador}}</p>
-                </ng-template>
-
-                <br>
-                <button mdbBtn type="button" color="success" mdbWavesEffect><i class="fas fa-edit pr-2"></i>Asignar</button>
-                <button mdbBtn type="button" color="danger" mdbWavesEffect><i class="fas fa-trash pr-2"></i>Rechazar</button>
+                            <button mdbBtn type="button" color="danger" mdbWavesEffect><i class="fas fa-trash pr-2"></i>Rechazar</button>
+                        </div>
+                    </div>
+                </form>
             </mdb-card-body>
             <mdb-card-footer class="text-muted">
                 <p>Fecha de solicitud: {{item.fecha}} </p>

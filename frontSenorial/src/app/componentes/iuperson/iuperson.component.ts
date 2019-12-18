@@ -6,12 +6,6 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ColaboradoresComponent } from '../colaboradores/colaboradores.component';
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 @Component({
   selector: 'app-iuperson',
   templateUrl: './iuperson.component.html',
@@ -31,6 +25,7 @@ export class IUPersonComponent implements OnInit {
     this.person = new Person();
     this.tittle = "";
   }
+  
   get f() { return this.registerForm.controls; }
 
   ngOnInit() {
