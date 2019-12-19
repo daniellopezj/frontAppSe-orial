@@ -2,18 +2,85 @@
 <div *ngIf="showinfo" class="container ">
     <div class="row" *ngIf="listInfo?.length > 0 then showlist else showCard "></div>
     <ng-template #showlist>
-        <div *ngFor="let item of listInfo;let i = index">
-            {{item.nombre}}
-        </div>
-    </ng-template>
-    <ng-template #showCard>
         <div class="container">
             <h2>
                 <Strong>Servicios Asignados</Strong>
             </h2>
         </div>
         <br>
-        <mdb-card class="emptyproject">
+        <div *ngFor="let item of listInfo;let i = index">
+            <mdb-card borderColor="border-secondary">
+                <mdb-card-header class="teal lighten-4">
+                    <h5> <strong> Solicitud de servicio: {{item.id_service}} </strong></h5>
+                </mdb-card-header>
+                <mdb-card-body>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <mdb-card-title>
+                                <h5>Usuario</h5>
+                                <p>Nombre: <strong> {{item.nombre}} {{item.apellido}} </strong></p>
+                                <p>Direccion:<strong> {{item.direccion}}  </strong></p>
+                                <p>Celular:<strong> {{item.celular}}  </strong></p>
+                                <p>Correo:<strong> {{item.correo}}  </strong></p>
+                                <hr style="border-color:black" class="col-md-10">
+                            </mdb-card-title>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <mdb-card-title>
+                                <h5>Servicio de: <strong> {{item.nombreCategoria}} </strong> </h5>
+                                <p>tipo de Servicio: <strong> {{item.tipoServicio}} </strong></p>
+                                <p>Fecha de Servicio: <strong> {{item.fecha_servicio}} </strong></p>
+                                <p>Horario: <strong> {{item.horario}} </strong></p>
+                                <div *ngIf="item.nColaboradores; then colaboradores else vehiculos"></div>
+                                <ng-template #colaboradores>
+                                    <p>Colaboradores: <strong> {{item.nColaboradores}} </strong></p>
+                                </ng-template>
+                                <ng-template #vehiculos>
+                                    <p>Vehiculos:<strong> {{item.nCarros}} </strong> </p>
+                                </ng-template>
+                                <hr style="border-color:black" class="col-md-10">
+                            </mdb-card-title>
+                        </div>
+                    </div>
+                    <p>Valor total: <strong>$ {{item.valor}} </strong></p>
+                    <hr style="border-color:black" class="col-md-10">
+                    <br>
+                    <h5>Colaboradores</h5>
+
+                    <div class=" container col-md-8">
+                        <table class="table table-responsive-lg">
+                            <thead class="black white-text">
+                                <tr>
+                                    <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let col of item.asignados;let i = index">
+                                    <td>{{col.nombre}}</td>
+                                    <td> {{col.apellido}}</td>
+                                    <td>{{col.celular}}</td>
+                                    <td><button mdbBtn type="button" color="primary" outline="true" mdbWavesEffect><i class="fas fa-edit pr-2"></i>Cambiar</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button mdbBtn class="btn botonTerminar" color="deep-purple" mdbWavesEffect><i class="fab fa-angellist pr-2"></i><strong>Terminar Servicio</strong></button>
+                </mdb-card-body>
+                <mdb-card-footer class="teal lighten-5 ">
+                    <p>Fecha de solicitud: {{item.fecha}} </p>
+                </mdb-card-footer>
+            </mdb-card>
+            <br><br>
+        </div>
+    </ng-template>
+    <ng-template #showCard>
+        <div class="container ">
+            <h2>
+                <Strong>Servicios Asignados</Strong>
+            </h2>
+        </div>
+        <br>
+        <mdb-card class="emptyproject ">
             <mdb-card-body>
                 <h4> <strong> <b> No tienes  servicios Asignados</b></strong></h4>
             </mdb-card-body>

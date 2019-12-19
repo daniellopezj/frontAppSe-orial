@@ -10,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class SasignadosComponent implements OnInit {
   showinfo: boolean;
   listInfo: any;
+  headElements = ['Nombre', 'Apellido', 'Celular', 'Asignados'];
+ 
   constructor(private cleanService: ServiceCleanService) { }
 
   ngOnInit() {
