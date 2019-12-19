@@ -40,7 +40,6 @@ export class NavApplicactionComponent implements OnInit {
 
   ngOnInit() {
     this.websocket.listen('countPending').subscribe((data) => {
-      console.log(data);
       this.countNotifications = data;
       this.compareNotification();
     })

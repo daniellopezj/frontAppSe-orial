@@ -20,15 +20,20 @@ export class InicioComponent implements OnInit {
   mySelections: string[];
   formAssigned: FormGroup;
   submitted: boolean[] = Array();
-  //submitted = false;
 
   constructor(private websocket: WebsocketService, private formBuilder: FormBuilder, private servicePerson: ServicePerson, private serviceClean: ServiceCleanService) {
     this.loadServicePending();
   }
 
   ngOnInit() {
-    this.websocket.listen('test-event').subscribe((data) => {
-      console.log(data);
+    this.websocket.listen('showInfoPending').subscribe((data) => {
+      this.listInfo  = data;
+      while (this.selectArray.length !== 0) {
+        this.selectArray.removeAt(0)
+      }
+      for (let entry of this.listInfo) {
+        this.addFormControl();
+      }
     })
     this.formAssigned = this.formBuilder.group({
       selectArray: this.formBuilder.array(
@@ -88,6 +93,7 @@ export class InicioComponent implements OnInit {
     if (this.selectArray.controls[id].get('selection').value=="") {
       return;
     }
+    item.estado = "asignado";
     console.log(item)
   }
 }
