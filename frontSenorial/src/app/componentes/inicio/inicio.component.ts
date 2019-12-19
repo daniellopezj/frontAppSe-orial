@@ -62,6 +62,7 @@ export class InicioComponent implements OnInit {
         this.listInfo = res.object;
         this.createFormArray();
       } else {
+        this.showinfo = true;
         console.log("ocurrio un fallo")
       }
     });
