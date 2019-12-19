@@ -69,11 +69,11 @@ export class InicioComponent implements OnInit {
     });
   }
   
- changed(nColaboradores) {
-    if (this.mascolaboradores.value.length <= nColaboradores) {
-      this.mySelections = this.mascolaboradores.value;
+ changed(nColaboradores, id) {
+    if (this.selectArray.controls[id].get('selection').value.length <= nColaboradores) {
+      this.mySelections = this.selectArray.controls[id].get('selection').value;
     } else {
-      this.mascolaboradores.setValue(this.mySelections);
+      this.selectArray.controls[id].get('selection').setValue(this.mySelections);
     }
   }
 
@@ -83,13 +83,11 @@ export class InicioComponent implements OnInit {
     this.submitted.push(false)
   }
 
-  asigned(id: number) {
+  asigned(item,id: number) {
     this.submitted[id] = true;
-    console.log(this.selectArray.value[id]);
     if (this.selectArray.controls[id].get('selection').value=="") {
       return;
     }
-    console.log("sadadsdsadasd")
-    
+    console.log(item)
   }
 }
