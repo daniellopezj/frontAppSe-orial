@@ -9,7 +9,7 @@
     <div *ngFor="let item of listInfo;let i = index">
         <mdb-card borderColor="border-secondary">
             <mdb-card-header class="">
-                <h5> <strong> Solicitud de servicio </strong></h5>
+                <h5> <strong> Solicitud de servicio: {{item.id_service}} </strong></h5>
             </mdb-card-header>
             <mdb-card-body>
                 <div class="row">
@@ -44,6 +44,7 @@
                 <form [formGroup]="formAssigned">
                     <div formArrayName="selectArray">
                         <div [formGroupName]="i">
+                            {{i}}
                             <div *ngIf="item.nColaboradores; then Selectcolaboradores else Selectvehiculos"></div>
                             <ng-template #Selectcolaboradores>
                                 <div *ngIf="item.nColaboradores>1; then SelectColaboradoresMas else  SelectColaboradores1"></div>
@@ -84,7 +85,7 @@
                             </ng-template>
                             <br>
                             <button mdbBtn class="btn" color="success" (click)="asigned(item,i)" mdbWavesEffect><i class="fas fa-edit pr-2"  ></i>Asignar</button>
-                            <button mdbBtn type="button" color="danger" (click)="refuse(item)" mdbWavesEffect><i class="fas fa-trash pr-2"></i>Rechazar</button>
+                            <button mdbBtn type="button" color="danger" (click)="refuse(item,i)" mdbWavesEffect><i class="fas fa-trash pr-2"></i>Rechazar</button>
                         </div>
                     </div>
                 </form>

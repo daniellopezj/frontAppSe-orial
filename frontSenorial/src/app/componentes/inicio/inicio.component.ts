@@ -27,13 +27,8 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     this.websocket.listen('showInfoPending').subscribe((data) => {
-      this.listInfo  = data;
-      while (this.selectArray.length !== 0) {
-        this.selectArray.removeAt(0)
-      }
-      for (let entry of this.listInfo) {
-        this.addFormControl();
-      }
+      this.listInfo = data;
+      this.createFormArray();
     })
     this.formAssigned = this.formBuilder.group({
       selectArray: this.formBuilder.array(
@@ -65,16 +60,23 @@ export class InicioComponent implements OnInit {
           }
         });
         this.listInfo = res.object;
-        for (let entry of this.listInfo) {
-          this.addFormControl();
-        }
+        this.createFormArray();
       } else {
         console.log("ocurrio un fallo")
       }
     });
   }
-  
- changed(nColaboradores, id) {
+
+  createFormArray(){
+    while (this.selectArray.length !== 0) {
+      this.selectArray.removeAt(0)
+    }
+    for (let entry of this.listInfo) {
+      this.addFormControl();
+    }
+  }
+
+  changed(nColaboradores, id) {
     if (this.selectArray.controls[id].get('selection').value.length <= nColaboradores) {
       this.mySelections = this.selectArray.controls[id].get('selection').value;
     } else {
@@ -88,27 +90,43 @@ export class InicioComponent implements OnInit {
     this.submitted.push(false)
   }
 
-  asigned(item,id: number) {
+  asigned(item, id: number) {
     this.submitted[id] = true;
-    if (this.selectArray.controls[id].get('selection').value=="") {
+    if (this.selectArray.controls[id].get('selection').value == "") {
       return;
     }
+    item.asignados = this.selectArray.controls[id].get('selection').value
     item.estado = "asignado";
-    console.log(item)
+    this.serviceClean.UpdateService(item).subscribe(res => {
+      if (res['status'] == 200) {
+        alert("solicitud aceptada")
+        const index = this.listInfo.indexOf(item, 0);
+        if (index > -1) {
+          this.listInfo.splice(index, 1);
+        }
+        this.selectArray.removeAt(id)
+      } else {
+        alert("Ocurrio un error")
+      }
+    })
   }
 
-  refuse(item) {
+  refuse(item,id) {
     var opcion = confirm("¿Estas seguro de rechazar el servicio?");
-      if (opcion == true) {
-        item.estado = "rechazado";
-        this.serviceClean.UpdateService(item).subscribe(res => {
-          if (res['status'] == 200) {
-              alert("solicitud rechazada")
-              this.listInfo.pop(item);
-          } else {
-            alert("Ocurrio un error")
-          }
-        })
-      }
+    if (opcion == true) {
+      item.estado = "rechazado";
+      this.serviceClean.UpdateService(item).subscribe(res => {
+        if (res['status'] == 200) {
+          alert("solicitud rechazada")
+          const index = this.listInfo.indexOf(item, 0);
+          if (index > -1) {
+            this.listInfo.splice(index, 1);
+          } 
+          this.selectArray.removeAt(id)
+        } else {
+          alert("Ocurrio un error")
+        }
+      })
+    }
   }
 }
