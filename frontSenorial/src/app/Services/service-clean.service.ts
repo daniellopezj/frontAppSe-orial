@@ -17,4 +17,7 @@ export class ServiceCleanService {
         return this.http.get<StatusServices>(`http://localhost:3000/pendientes/`);
     }
     
+    public UpdateService(object: Object): Observable<JSON> {
+      return this.http.put<JSON>(`http://localhost:3000/actualizarServicio`, object);
+  }
 }

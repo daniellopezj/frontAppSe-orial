@@ -96,4 +96,19 @@ export class InicioComponent implements OnInit {
     item.estado = "asignado";
     console.log(item)
   }
+
+  refuse(item) {
+    var opcion = confirm("¿Estas seguro de rechazar el servicio?");
+      if (opcion == true) {
+        item.estado = "rechazado";
+        this.serviceClean.UpdateService(item).subscribe(res => {
+          if (res['status'] == 200) {
+              alert("solicitud rechazada")
+              this.listInfo.pop(item);
+          } else {
+            alert("Ocurrio un error")
+          }
+        })
+      }
+  }
 }
