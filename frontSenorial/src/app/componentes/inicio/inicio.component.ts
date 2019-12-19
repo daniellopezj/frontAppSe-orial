@@ -30,6 +30,11 @@ export class InicioComponent implements OnInit {
       this.listInfo = data;
       this.createFormArray();
     })
+    this.servicePerson.requestPerson().subscribe(res => {
+      if (res.responseCode == 200) {
+        this.listColaboradores = res.object;
+      }
+    });
     this.formAssigned = this.formBuilder.group({
       selectArray: this.formBuilder.array(
         [this.createEmpFormGroup()],
@@ -53,12 +58,7 @@ export class InicioComponent implements OnInit {
     this.showinfo = false;
     this.serviceClean.requestServicePending().subscribe(res => {
       if (res.responseCode == 200) {
-        this.servicePerson.requestPerson().subscribe(res => {
-          if (res.responseCode == 200) {
-            this.listColaboradores = res.object;
-            this.showinfo = true;
-          }
-        });
+        this.showinfo = true;
         this.listInfo = res.object;
         this.createFormArray();
       } else {

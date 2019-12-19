@@ -16,6 +16,10 @@ export class ServiceCleanService {
     public requestServicePending(): Observable<StatusServices> {
         return this.http.get<StatusServices>(`http://localhost:3000/pendientes/`);
     }
+
+    public requestServiceAssigned(): Observable<StatusServices> {
+      return this.http.get<StatusServices>(`http://localhost:3000/asignados/`);
+  }
     
     public UpdateService(object: Object): Observable<JSON> {
       return this.http.put<JSON>(`http://localhost:3000/actualizarServicio`, object);
