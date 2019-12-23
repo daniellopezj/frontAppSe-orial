@@ -20,6 +20,7 @@ export class InicioComponent implements OnInit {
   mySelections: string[];
   formAssigned: FormGroup;
   submitted: boolean[] = Array();
+  valueAsigned: Object[] = Array();
 
   constructor(private websocket: WebsocketService, private formBuilder: FormBuilder, private servicePerson: ServicePerson, private serviceClean: ServiceCleanService) {
     this.loadServicePending();
@@ -73,6 +74,7 @@ export class InicioComponent implements OnInit {
       this.selectArray.removeAt(0)
     }
     for (let entry of this.listInfo) {
+      entry.asignados = new Array();
       this.addFormControl();
     }
   }
@@ -84,7 +86,7 @@ export class InicioComponent implements OnInit {
       this.selectArray.controls[id].get('selection').setValue(this.mySelections);
     }
   }
-
+ 
   addFormControl() {
     let fg = this.createEmpFormGroup();
     this.selectArray.push(fg);
@@ -96,7 +98,12 @@ export class InicioComponent implements OnInit {
     if (this.selectArray.controls[id].get('selection').value == "") {
       return;
     }
-    item.asignados = this.selectArray.controls[id].get('selection').value
+    if(this.valueAsigned[0] !== ""){
+     item.asignados[0] = this.selectArray.controls[id].get('selection').value
+     this.valueAsigned[0] = "";
+    }else{
+      item.asignados = this.selectArray.controls[id].get('selection').value
+    }
     item.estado = "asignado";
     this.serviceClean.UpdateService(item).subscribe(res => {
       if (res['status'] == 200) {

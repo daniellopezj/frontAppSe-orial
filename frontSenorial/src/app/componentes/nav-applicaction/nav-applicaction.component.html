@@ -29,14 +29,14 @@
                 <mat-icon>account_circle</mat-icon>Cuenta
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item>
+                <button mat-menu-item [routerLink]="['asignados']">
+                    <mat-icon>visibility</mat-icon>
+                    <span>Asignados</span> 
+                 </button>
+                <button mat-menu-item [routerLink]="['realizados']">
                     <mat-icon>done_outline</mat-icon>
                     <span>Realizados</span>
                 </button>
-                <button mat-menu-item>
-                    <mat-icon>visibility</mat-icon>
-                    <span>Pendientes</span>
-                 </button>
             </mat-menu>
             <mat-menu #datos="matMenu">
                 <button mat-menu-item>
