@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { IUPersonComponent } from './componentes/iuperson/iuperson.component';
 import { SrealizadosComponent } from './componentes/srealizados/srealizados.component';
 import { SasignadosComponent } from './componentes/sasignados/sasignados.component';
+import { SelectColaboratorComponent } from './componentes/select-colaborator/select-colaborator.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SasignadosComponent } from './componentes/sasignados/sasignados.compone
     IUPersonComponent,
     SrealizadosComponent,
     SasignadosComponent,
+    SelectColaboratorComponent,
   ],
   imports: [
     BrowserModule,

@@ -52,8 +52,7 @@
                                 <div *ngIf="item.nColaboradores>1; then SelectColaboradoresMas else  SelectColaboradores1"></div>
                                 <ng-template #SelectColaboradoresMas>
                                     <mat-form-field class="col-md-4 col-lg-4 col-sm-10 col-xs-12">
-                                        <mat-select placeholder="Colaboradores" [(value)]="item.asignados" formControlName="selection" class="form-control" (selectionChange)="changed(item.nColaboradores,i)" [ngClass]="{ 'is-invalid': submitted[i] && selectArray.controls[i].get('selection').errors }"
-                                            multiple>
+                                        <mat-select placeholder="Colaboradores" formControlName="selection" class="form-control" (selectionChange)="changed(item.nColaboradores,i)" [ngClass]="{ 'is-invalid': submitted[i] && selectArray.controls[i].get('selection').errors }" multiple>
                                             <mat-option *ngFor="let colaborador of listColaboradores" [value]="colaborador">{{colaborador.nombre}} {{colaborador.apellido}}</mat-option>
                                         </mat-select>
                                         <div *ngIf="submitted[i] && selectArray.controls[i].get('selection').errors" class="invalid-feedback">

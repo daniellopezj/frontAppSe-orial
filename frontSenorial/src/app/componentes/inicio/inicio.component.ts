@@ -27,6 +27,7 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("entre al init");
     this.websocket.listen('showInfoPending').subscribe((data) => {
       this.listInfo = data;
       this.createFormArray();
@@ -99,12 +100,12 @@ export class InicioComponent implements OnInit {
       return;
     }
     if(this.valueAsigned[0] !== ""){
-     item.asignados[0] = this.selectArray.controls[id].get('selection').value
-     this.valueAsigned[0] = "";
-    }else{
-      item.asignados = this.selectArray.controls[id].get('selection').value
-    }
-    item.estado = "asignado";
+      item.asignados[0] = this.selectArray.controls[id].get('selection').value
+      this.valueAsigned[0] = "";
+     }else{
+       item.asignados = this.selectArray.controls[id].get('selection').value
+     }
+     item.estado = "asignado";
     this.serviceClean.UpdateService(item).subscribe(res => {
       if (res['status'] == 200) {
         alert("solicitud aceptada")
