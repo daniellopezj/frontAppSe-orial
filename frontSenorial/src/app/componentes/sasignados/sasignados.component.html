@@ -59,7 +59,7 @@
                                     <td>{{col.nombre}}</td>
                                     <td> {{col.apellido}}</td>
                                     <td>{{col.celular}}</td>
-                                    <td><button mdbBtn type="button" color="primary" outline="true" mdbWavesEffect><i class="fas fa-edit pr-2"></i>Cambiar</button></td>
+                                    <td><button mdbBtn type="button" color="primary" (click)="changeColaborator(item,item.asignados, i)" outline="true" mdbWavesEffect><i class="fas fa-edit pr-2"></i>Cambiar</button></td>
                                 </tr>
                             </tbody>
                         </table>

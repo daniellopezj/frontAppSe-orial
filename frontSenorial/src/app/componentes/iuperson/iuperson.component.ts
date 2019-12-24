@@ -2,7 +2,6 @@ import { ServicePerson } from './../../Services/ServicePerson';
 import { Person } from './../../models/Person';
 import { Component, OnInit, Inject, Injectable } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ColaboradoresComponent } from '../colaboradores/colaboradores.component';
 

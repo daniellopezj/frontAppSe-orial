@@ -1,1 +1,29 @@
-<p>select-colaborator works!</p>
+<div style="align-items: center" class=" prin">
+    <div class=" text-center">
+        <h4 class=" w-100 font-weight-bold">
+            Selecciona Colaborador </h4>
+    </div>
+    <div *ngIf="listColaborator.length>0 then showinfo else hideInfo"></div>
+    <ng-template #showinfo>
+        <div class=" text-center">
+            <form [formGroup]="selectChange" (ngSubmit)="changeColaborator()">
+                <mat-form-field class="col-md-11" required>
+                    <mat-label>Selecciona Colaborador</mat-label>
+                    <mat-select placeholder="Colaboradores" [(value)]="colaboradorSelectted" formControlName="selection" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.selection.errors }">
+                        <mat-option *ngFor="let colaborador of listColaborator" [(value)]="colaborador">{{colaborador.nombre}} {{colaborador.apellido}}</mat-option>
+                    </mat-select>
+                    <div *ngIf="submitted && f.selection.errors" class="invalid-feedback">
+                        <div *ngIf="f.selection.errors.required"></div>
+                    </div>
+                </mat-form-field>
+                <div class="form-group md-8" style="text-align: center">
+                    <button class="btn btn-primary"> Cambiar </button>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+    <ng-template #hideInfo>
+        <h5>No hay colaboradores para seleccionar</h5>
+    </ng-template>
+
+</div>

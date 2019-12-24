@@ -49,7 +49,7 @@ import { SelectColaboratorComponent } from './componentes/select-colaborator/sel
     FormsModule
   ],
   entryComponents:[
-     IUPersonComponent
+     IUPersonComponent, SelectColaboratorComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

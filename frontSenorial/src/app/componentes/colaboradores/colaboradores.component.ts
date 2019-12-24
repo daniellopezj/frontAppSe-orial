@@ -19,7 +19,7 @@ export class ColaboradoresComponent implements OnInit {
   name: number;
   sendperson: Person;
 
-  constructor(public dialog: MatDialog, private _router: Router, private servicePerson: ServicePerson) {
+  constructor(public dialog: MatDialog, private servicePerson: ServicePerson) {
     this.showinfo = false;
     this.loadPersons();
   }

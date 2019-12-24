@@ -27,7 +27,6 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("entre al init");
     this.websocket.listen('showInfoPending').subscribe((data) => {
       this.listInfo = data;
       this.createFormArray();
@@ -70,7 +69,7 @@ export class InicioComponent implements OnInit {
     });
   }
 
-  createFormArray(){
+  createFormArray() {
     while (this.selectArray.length !== 0) {
       this.selectArray.removeAt(0)
     }
@@ -87,7 +86,7 @@ export class InicioComponent implements OnInit {
       this.selectArray.controls[id].get('selection').setValue(this.mySelections);
     }
   }
- 
+
   addFormControl() {
     let fg = this.createEmpFormGroup();
     this.selectArray.push(fg);
@@ -99,13 +98,17 @@ export class InicioComponent implements OnInit {
     if (this.selectArray.controls[id].get('selection').value == "") {
       return;
     }
-    if(this.valueAsigned[0] !== ""){
+    if (this.valueAsigned[0] !== undefined) {
       item.asignados[0] = this.selectArray.controls[id].get('selection').value
-      this.valueAsigned[0] = "";
-     }else{
-       item.asignados = this.selectArray.controls[id].get('selection').value
-     }
-     item.estado = "asignado";
+      this.valueAsigned[0] = undefined;
+    } else {
+      item.asignados = this.selectArray.controls[id].get('selection').value
+    }
+    item.estado = "asignado";
+    this.updateStatusService(item,id);
+  }
+
+  updateStatusService(item,id) {
     this.serviceClean.UpdateService(item).subscribe(res => {
       if (res['status'] == 200) {
         alert("solicitud aceptada")
@@ -120,7 +123,7 @@ export class InicioComponent implements OnInit {
     })
   }
 
-  refuse(item,id) {
+  refuse(item, id) {
     var opcion = confirm("¿Estas seguro de rechazar el servicio?");
     if (opcion == true) {
       item.estado = "rechazado";
@@ -130,7 +133,7 @@ export class InicioComponent implements OnInit {
           const index = this.listInfo.indexOf(item, 0);
           if (index > -1) {
             this.listInfo.splice(index, 1);
-          } 
+          }
           this.selectArray.removeAt(id)
         } else {
           alert("Ocurrio un error")
