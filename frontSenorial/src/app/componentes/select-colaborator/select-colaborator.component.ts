@@ -1,8 +1,10 @@
+import { ServiceCleanService } from './../../Services/service-clean.service';
 import { SasignadosComponent } from './../sasignados/sasignados.component';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-select-colaborator',
   templateUrl: './select-colaborator.component.html',
@@ -11,16 +13,16 @@ import { Router } from '@angular/router';
 export class SelectColaboratorComponent implements OnInit {
 
   selectChange: FormGroup;
-  colaboradorSelectted:any;
+  colaboradorSelectted: any;
   listColaborator: any;
   iColaborator: number;
-  item:any;
+  item: any;
   submitted: boolean;
-  
-  constructor(private formBuilder: FormBuilder,private _router: Router,
+
+
+  constructor(private formBuilder: FormBuilder, private _router: Router,private serviceClean:ServiceCleanService,
     public dialogRef: MatDialogRef<SelectColaboratorComponent>,
     @Inject(MAT_DIALOG_DATA) public componentAsignados: SasignadosComponent) {
-
   }
 
   get f() { return this.selectChange.controls; }
@@ -33,18 +35,28 @@ export class SelectColaboratorComponent implements OnInit {
   }
 
   loadInfo() {
-  this.listColaborator =   this.componentAsignados.listSelect ;
+    this.listColaborator = this.componentAsignados.listSelect;
+    this.item  =  this.componentAsignados.item;
+    this.iColaborator = this.componentAsignados.iColaborator;
   }
 
-  changeColaborator(){
+  changeColaborator() {
     this.submitted = true;
     if (this.selectChange.invalid) {
       return;
     }
-console.log("active el boton")
+    this.item.asignados[this.iColaborator] =  this.colaboradorSelectted;
+    this.serviceClean.UpdateService(this.item).subscribe(res =>{
+      if (res['status'] == 200) {
+        alert("Cambio Exitoso")
+       } else{
+        alert("Ocurrio un error")
+       }
+    })
+    this.dialogRef.close();
   }
 
-  insert(){
+  insert() {
     this._router.navigate([`/colaboradores`]);
     this.dialogRef.close();
   }
