@@ -2,6 +2,7 @@ import { SasignadosComponent } from './../sasignados/sasignados.component';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-select-colaborator',
   templateUrl: './select-colaborator.component.html',
@@ -16,7 +17,7 @@ export class SelectColaboratorComponent implements OnInit {
   item:any;
   submitted: boolean;
   
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: FormBuilder,private _router: Router,
     public dialogRef: MatDialogRef<SelectColaboratorComponent>,
     @Inject(MAT_DIALOG_DATA) public componentAsignados: SasignadosComponent) {
 
@@ -42,4 +43,10 @@ export class SelectColaboratorComponent implements OnInit {
     }
 console.log("active el boton")
   }
+
+  insert(){
+    this._router.navigate([`/colaboradores`]);
+    this.dialogRef.close();
+  }
+
 }

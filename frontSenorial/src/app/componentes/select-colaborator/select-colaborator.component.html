@@ -23,7 +23,12 @@
         </div>
     </ng-template>
     <ng-template #hideInfo>
-        <h5>No hay colaboradores para seleccionar</h5>
+        <div class="text-center">
+            <br>
+            <h5>No hay colaboradores para seleccionar</h5>
+            <br>
+            <button mdbBtn type="button" color="success" outline="true" (click)="insert()" mdbWavesEffect> <i class="far fa-save  pr-2"></i> Insertar Colaborador </button>
+        </div>
     </ng-template>
 
 </div>
