@@ -20,6 +20,7 @@ import { IUPersonComponent } from './componentes/iuperson/iuperson.component';
 import { SrealizadosComponent } from './componentes/srealizados/srealizados.component';
 import { SasignadosComponent } from './componentes/sasignados/sasignados.component';
 import { SelectColaboratorComponent } from './componentes/select-colaborator/select-colaborator.component';
+import { UsersComponent } from './componentes/users/users.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { SelectColaboratorComponent } from './componentes/select-colaborator/sel
     SrealizadosComponent,
     SasignadosComponent,
     SelectColaboratorComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
