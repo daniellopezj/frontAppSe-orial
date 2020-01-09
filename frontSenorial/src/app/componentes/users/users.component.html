@@ -1,1 +1,29 @@
-<p>users works!</p>
+<mat-spinner class="spinner" *ngIf="!showinfo"></mat-spinner>
+<div *ngIf="showinfo" class="container">
+    <div class=" text-center  col-md-12 align-center">
+        <h2>
+            <Strong>Lista de Usuarios</Strong>
+        </h2>
+        <br>
+        <table id="excel-table" class="table table-responsive-lg">
+            <thead class="black white-text">
+                <tr>
+                    <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let col of listInfo;let i = index">
+                    <td>{{col.nombre}}</td>
+                    <td> {{col.apellido}}</td>
+                    <td> {{col.edad}} años</td>
+                    <td> <a href="tel:+34678567876">{{col.telefono}}</a></td>
+                    <td> <a href="mailto:{{col.correo}}"> {{col.correo}}</a> </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a style="cursor: pointer" (click)="exportexcel()">
+            <mat-icon> cloud_download</mat-icon>
+        </a>
+    </div>
+</div>
