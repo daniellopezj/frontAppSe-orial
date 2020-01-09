@@ -63,7 +63,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <button mdbBtn class="btn botonTerminar" color="deep-purple" mdbWavesEffect><i class="fab fa-angellist pr-2"></i><strong>Terminar Servicio</strong></button>
+                    <button mdbBtn class="btn botonTerminar" color="deep-purple" (click)="finishService(item,i)" mdbWavesEffect><i class="fab fa-angellist pr-2"></i><strong>Terminar Servicio</strong></button>
                 </mdb-card-body>
                 <mdb-card-footer class="teal lighten-5 ">
                     <p>Fecha de solicitud: {{item.fecha}} </p>

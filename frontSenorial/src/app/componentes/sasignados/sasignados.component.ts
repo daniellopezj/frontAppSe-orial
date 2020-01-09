@@ -18,6 +18,7 @@ export class SasignadosComponent implements OnInit {
   iColaborator: number;
   item:any;
   listSelect:any;
+
   constructor(public dialog: MatDialog, private servicePerson: ServicePerson, private cleanService: ServiceCleanService) { }
 
   ngOnInit() {
@@ -64,5 +65,20 @@ export class SasignadosComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log("close dialog")
     });
+  }
+
+  finishService(item, id){
+    item.estado = "terminado";
+    this.cleanService.UpdateService(item).subscribe(res => {
+      if (res['status'] == 200) {
+        alert("Servicio terminado")
+        const index = this.listInfo.indexOf(item, 0);
+        if (index > -1) {
+          this.listInfo.splice(index, 1);
+        }
+      } else {
+        alert("Ocurrio un error")
+      }
+    })
   }
 }
