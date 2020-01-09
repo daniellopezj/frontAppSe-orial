@@ -25,7 +25,6 @@ export class SasignadosComponent implements OnInit {
     this.servicePerson.requestPerson().subscribe(res => {
       if (res.responseCode == 200) {
         this.listColaborator = res.object;
-
       }
     });
     this.loadServiceAssigned();

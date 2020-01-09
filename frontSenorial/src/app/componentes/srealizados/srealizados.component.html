@@ -1,1 +1,140 @@
-<p>srealizados works!</p>
+<mat-spinner class="spinner" *ngIf="!showinfo"></mat-spinner>
+<div *ngIf="showinfo" class="container ">
+    <div class="row" *ngIf="listInfo?.length > 0 then showlist else showCard "></div>
+    <ng-template #showlist>
+        <div class="container">
+            <h2>
+                <Strong>Servicios Realizados</Strong>
+            </h2>
+        </div>
+        <br>
+        <div *ngFor="let item of listInfo;let i = index">
+            <div class="row" *ngIf="item.estado == 'terminado' then terminado else rechazado "></div>
+            <ng-template #terminado>
+                <mdb-card borderColor="border-secondary">
+                    <mdb-card-header class="teal lighten-4 text-center">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                <h5> <strong> Solicitud de servicio: {{item.id_service}} </strong></h5>
+                                <h5>Fecha de Servicio: <strong> {{item.fecha_servicio}} </strong> </h5>
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                <h5>Servicio de: <strong> {{item.nombreCategoria}} </strong> </h5>
+                                <h5>Estado: <strong> {{item.estado}} </strong></h5>
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                <h5> Cliente <strong> {{item.nombre}} {{item.apellido}} </strong></h5>
+                                <h5> Valor total: <strong>$ {{item.valor}} </strong></h5>
+                            </div>
+                        </div>
+
+                    </mdb-card-header>
+                    <mdb-card-body>
+                        <button type="button" class="btn btn-link" (click)="show[i] = !show[i]">{{show[i] ?   'ocultar detalles<<' :'ver detalles>>' }}</button>
+                        <br>
+                        <div *ngIf="show[i]">
+                            <div class="row text-left">
+                                <div class="col-md-4 col-sm-12 col-xs-12 ">
+                                    <mdb-card-title>
+                                        <h5>Usuario</h5>
+                                        <p>Nombre: <strong> {{item.nombre}} {{item.apellido}} </strong></p>
+                                        <p>Direccion:<strong> {{item.direccion}}  </strong></p>
+                                        <p>Celular:<strong> {{item.celular}}  </strong></p>
+                                        <p>Correo:<strong> {{item.correo}}  </strong></p>
+                                    </mdb-card-title>
+                                </div>
+                                <div class="col-md-4 col-sm-12 col-xs-12">
+                                    <mdb-card-title>
+                                        <p>tipo de Servicio: <strong> {{item.tipoServicio}} </strong></p>
+                                        <p>Horario: <strong> {{item.horario}} </strong></p>
+                                        <div *ngIf="item.nColaboradores; then colaboradores else vehiculos"></div>
+                                        <ng-template #vehiculos>
+                                            <p>Vehiculos:<strong> {{item.nCarros}} </strong> </p>
+                                        </ng-template>
+                                    </mdb-card-title>
+                                </div>
+                                <br>
+                                <div class="col-md-4 col-sm-12 col-xs-12">
+                                    <h5>Colaboradores</h5>
+                                    <div *ngFor="let col of item.asignados;let i = index">
+                                        <div class="row">
+                                            <div class="col-md-12 ">{{i+1}} {{col.nombre}} {{col.apellido}}</div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mdb-card-body>
+                </mdb-card>
+            </ng-template>
+            <ng-template #rechazado>
+                <mdb-card borderColor="border-secondary">
+                    <mdb-card-header class="red lighten-2 text-center">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                <h5> <strong> Solicitud de servicio: {{item.id_service}} </strong></h5>
+                                <h5>Fecha de Servicio: <strong> {{item.fecha_servicio}} </strong> </h5>
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                <h5>Servicio de: <strong> {{item.nombreCategoria}} </strong> </h5>
+                                <h5>Estado: <strong> {{item.estado}} </strong></h5>
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                <h5> Cliente <strong> {{item.nombre}} {{item.apellido}} </strong></h5>
+                            </div>
+                        </div>
+                    </mdb-card-header>
+                    <mdb-card-body>
+                        <button type="button" class="btn btn-link" (click)="show[i] = !show[i]">{{show[i] ?   'ocultar detalles<<' :'ver detalles>>' }}</button>
+                        <br>
+                        <div *ngIf="show[i]">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <mdb-card-title>
+                                        <h5>Usuario</h5>
+                                        <p>Nombre: <strong> {{item.nombre}} {{item.apellido}} </strong></p>
+                                        <p>Direccion:<strong> {{item.direccion}}  </strong></p>
+                                        <p>Celular:<strong> {{item.celular}}  </strong></p>
+                                        <p>Correo:<strong> {{item.correo}}  </strong></p>
+                                    </mdb-card-title>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <mdb-card-title>
+
+                                        <p>tipo de Servicio: <strong> {{item.tipoServicio}} </strong></p>
+
+                                        <p>Horario: <strong> {{item.horario}} </strong></p>
+                                        <div *ngIf="item.nColaboradores; then colaboradores else vehiculos"></div>
+                                        <ng-template #colaboradores>
+                                            <p>Colaboradores: <strong> {{item.nColaboradores}} </strong></p>
+                                        </ng-template>
+                                        <ng-template #vehiculos>
+                                            <p>Vehiculos:<strong> {{item.nCarros}} </strong> </p>
+                                        </ng-template>
+                                    </mdb-card-title>
+                                </div>
+                            </div>
+                        </div>
+                    </mdb-card-body>
+                </mdb-card>
+            </ng-template>
+
+            <br><br>
+        </div>
+    </ng-template>
+    <ng-template #showCard>
+        <div class="container ">
+            <h2>
+                <Strong>Servicios Terminados</Strong>
+            </h2>
+        </div>
+        <br>
+        <mdb-card class="emptyproject ">
+            <mdb-card-body>
+                <h4> <strong> <b> No tienes  servicios Terminados</b></strong></h4>
+            </mdb-card-body>
+        </mdb-card>
+    </ng-template>
+</div>
