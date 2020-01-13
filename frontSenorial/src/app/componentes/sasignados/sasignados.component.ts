@@ -19,7 +19,9 @@ export class SasignadosComponent implements OnInit {
   item:any;
   listSelect:any;
 
-  constructor(public dialog: MatDialog, private servicePerson: ServicePerson, private cleanService: ServiceCleanService) { }
+  constructor(public dialog: MatDialog, private servicePerson: ServicePerson, private cleanService: ServiceCleanService) {
+    this.loadServiceAssigned();
+   }
 
   ngOnInit() {
     this.servicePerson.requestPerson().subscribe(res => {
@@ -27,18 +29,21 @@ export class SasignadosComponent implements OnInit {
         this.listColaborator = res.object;
       }
     });
-    this.loadServiceAssigned();
+   
   }
 
   loadServiceAssigned() {
     this.showinfo = false;
     this.cleanService.requestServiceAssigned().subscribe(res => {
+      console.log(res)
       if (res.responseCode == 200) {
+        this.showinfo = true;
         this.listInfo = res.object;
       } else {
+        this.showinfo = true;
         console.log("ocurrio un fallo")
       }
-      this.showinfo = true;
+     
     });
   }
 

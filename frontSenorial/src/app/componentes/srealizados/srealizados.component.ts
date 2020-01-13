@@ -1,3 +1,4 @@
+import { WebsocketService } from 'src/app/Services/websocket.service';
 import { ServiceCleanService } from './../../Services/service-clean.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -13,19 +14,32 @@ export class SrealizadosComponent implements OnInit {
   showinfo: boolean;
   show: boolean[] = Array() ;
   headElements = ['Nombre', 'Apellido', 'Celular'];
-  constructor(private serviceCleanService: ServiceCleanService) {
+  constructor(private webSocket:WebsocketService,private serviceCleanService: ServiceCleanService) {
 
   }
 
   ngOnInit() {
-  this.loadInfo();
+    this.webSocket.listen('finish').subscribe((data) => {
+      this.loadInfo();
+    })
+    if (localStorage.getItem("listTerminados")) {
+      this.listInfo = JSON.parse(localStorage.getItem("listTerminados"));
+      this.showinfo = true;
+    } else {
+      this.loadInfo();
+    }
+
+  }
+
+  setlistStorage(){
+    localStorage.setItem("listTerminados", JSON.stringify(this.listInfo));
   }
 
   loadInfo(){
-    this.showinfo = false;
     this.serviceCleanService.requestServiceFinish().subscribe(res => {
       if (res.responseCode == 200) {
         this.listInfo = res.object;
+        this.setlistStorage();
       } else {
         alert("Ocurrio un problema!")
       }
