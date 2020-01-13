@@ -5,6 +5,10 @@
             <Strong>Lista de Usuarios</Strong>
         </h2>
         <br>
+        <button mdbBtn type="button" class="btn btn-outline-info waves-effect" outline="true" (click)="exportexcel()" mdbWavesEffect> <i class="fas fa-download pr-2"></i> Exportar </button>
+
+        <br>
+        <br>
         <table id="excel-table" class="table table-responsive-lg">
             <thead class="black white-text">
                 <tr>
@@ -22,8 +26,6 @@
             </tbody>
         </table>
 
-        <a style="cursor: pointer" (click)="exportexcel()">
-            <mat-icon> cloud_download</mat-icon>
-        </a>
+
     </div>
 </div>

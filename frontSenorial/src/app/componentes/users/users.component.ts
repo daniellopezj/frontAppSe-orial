@@ -23,7 +23,6 @@ export class UsersComponent implements OnInit {
     this.showinfo = false;
     this.userService.requestgetUsers().subscribe(res => {
       if (res.responseCode == 200) {
-        console.log('asdasdsa')
         this.listInfo = res.object;
         this.showinfo = true;
       } else {
