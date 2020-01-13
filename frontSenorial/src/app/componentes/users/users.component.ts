@@ -1,3 +1,4 @@
+import { WebsocketService } from 'src/app/Services/websocket.service';
 import { ServiceUserService } from './../../Services/service-user.service';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
@@ -13,18 +14,30 @@ export class UsersComponent implements OnInit {
   headElements = ['Nombre', 'Apellido', 'edad', 'Celular', 'correo'];
   fileName = 'Datos Usuarios.xlsx';
 
-  constructor(private userService: ServiceUserService) { }
+  constructor(private userService: ServiceUserService,private webSsocket:WebsocketService) { }
+  
   ngOnInit() {
-    this.loadinfo();
+    this.webSsocket.listen('insertUser').subscribe((data) => {
+      this.loadinfo();
+    })
+    if (localStorage.getItem("listUsuarios")) {
+      this.listInfo = JSON.parse(localStorage.getItem("listUsuarios"));
+      this.showinfo = true;
+    } else {
+      this.loadinfo();
+    }
+  }
+
+  setlistStorage() {
+    localStorage.setItem("listUsuarios", JSON.stringify(this.listInfo));
   }
 
   loadinfo() {
-
-    this.showinfo = false;
     this.userService.requestgetUsers().subscribe(res => {
       if (res.responseCode == 200) {
         this.listInfo = res.object;
         this.showinfo = true;
+        this.setlistStorage();
       } else {
         console.log("ocurrio  un error")
       }

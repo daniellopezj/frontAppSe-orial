@@ -47,8 +47,8 @@ export class ColaboradoresComponent implements OnInit {
 
   setlistStorage(){
     localStorage.setItem("listColaboradores", JSON.stringify(this.listInfo));
-
   }
+  
   loadPersons() {
     this.showinfo = false;
     this.servicePerson.requestPerson().subscribe(res => {
