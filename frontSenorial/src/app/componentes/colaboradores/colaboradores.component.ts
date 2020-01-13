@@ -20,8 +20,16 @@ export class ColaboradoresComponent implements OnInit {
   sendperson: Person;
 
   constructor(public dialog: MatDialog, private servicePerson: ServicePerson) {
+  }
+
+  ngOnInit() {
     this.showinfo = false;
-    this.loadPersons();
+    if (localStorage.getItem("listColaboradores")) {
+      this.listInfo = JSON.parse(localStorage.getItem("listColaboradores"));
+      this.showinfo = true;
+    } else {
+      this.loadPersons();
+    }
   }
 
   insert(): void {
@@ -32,41 +40,43 @@ export class ColaboradoresComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.servicePerson.requestPerson().subscribe(res => {
         this.listInfo = res.object;
+        this.setlistStorage()
       });
     });
   }
 
+  setlistStorage(){
+    localStorage.setItem("listColaboradores", JSON.stringify(this.listInfo));
+
+  }
   loadPersons() {
     this.showinfo = false;
     this.servicePerson.requestPerson().subscribe(res => {
       if (res.responseCode == 200) {
         this.listInfo = res.object;
-        this.showinfo = true;
+        this.setlistStorage()
+          this.showinfo = true;
       } else {
         console.log("ocurrio un fallo")
       }
     });
   }
 
-
-  ngOnInit() {
-    this.loadPersons();
-  }
-
   delete(id_person) {
     var opcion = confirm("¿Estas seguro(@)?");
-      if (opcion == true) {
-        this.servicePerson.deletePerson(id_person).subscribe(res => {
-          if (res['status'] == 200) {
-            this.servicePerson.requestPerson().subscribe(res => {
-              this.listInfo = res.object;
-            });
-            console.log("hola");
-          } else {
-            alert("Ocurrio un error")
-          }
-        })
-      }
+    if (opcion == true) {
+      this.servicePerson.deletePerson(id_person).subscribe(res => {
+        if (res['status'] == 200) {
+          this.servicePerson.requestPerson().subscribe(res => {
+            this.listInfo = res.object;
+            this.setlistStorage()
+          });
+          console.log("hola");
+        } else {
+          alert("Ocurrio un error")
+        }
+      })
+    }
   }
 
   update(valor) {
@@ -77,6 +87,8 @@ export class ColaboradoresComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.servicePerson.requestPerson().subscribe(res => {
         this.listInfo = res.object;
+        console.log(this.listInfo)
+        this.setlistStorage() 
       });
     });
   }

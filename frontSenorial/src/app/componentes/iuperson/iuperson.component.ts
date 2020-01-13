@@ -43,7 +43,6 @@ export class IUPersonComponent implements OnInit {
     } else if (this.componentPerson.name == 2) {
       this.tittle = "Actualizar"
       this.person = this.componentPerson.sendperson;
-      console.log(this.person);
     }
   }
 
