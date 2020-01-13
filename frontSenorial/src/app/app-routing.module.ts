@@ -6,14 +6,18 @@ import { ContainerComponent } from './componentes/container/container.component'
 import { SrealizadosComponent } from './componentes/srealizados/srealizados.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { UsersComponent } from './componentes/users/users.component';
+import { LoginComponent } from './componentes/login/login.component';
 
 const routes: Routes = [
-    { path: 'container', component: ContainerComponent },
-    { path: 'colaboradores', component: ColaboradoresComponent },
-    { path: 'asignados', component: SasignadosComponent },
-    { path: 'realizados', component: SrealizadosComponent },
-    { path: 'usuarios', component: UsersComponent },
-    { path: '', component: InicioComponent },
+    { path: '', component: ContainerComponent, children:[
+        { path: 'colaboradores', component: ColaboradoresComponent },
+        { path: 'asignados', component: SasignadosComponent },
+        { path: 'realizados', component: SrealizadosComponent },
+        { path: 'usuarios', component: UsersComponent },
+        { path: '', component: InicioComponent },
+    ]},
+    { path: 'login', component: LoginComponent,},
+   
 ];
 
 @NgModule({

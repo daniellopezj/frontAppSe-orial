@@ -21,6 +21,7 @@ import { SrealizadosComponent } from './componentes/srealizados/srealizados.comp
 import { SasignadosComponent } from './componentes/sasignados/sasignados.component';
 import { SelectColaboratorComponent } from './componentes/select-colaborator/select-colaborator.component';
 import { UsersComponent } from './componentes/users/users.component';
+import { LoginComponent } from './componentes/login/login.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { UsersComponent } from './componentes/users/users.component';
     SasignadosComponent,
     SelectColaboratorComponent,
     UsersComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

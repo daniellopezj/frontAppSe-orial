@@ -29,13 +29,11 @@ export class SasignadosComponent implements OnInit {
         this.listColaborator = res.object;
       }
     });
-   
   }
 
   loadServiceAssigned() {
     this.showinfo = false;
     this.cleanService.requestServiceAssigned().subscribe(res => {
-      console.log(res)
       if (res.responseCode == 200) {
         this.showinfo = true;
         this.listInfo = res.object;
@@ -43,7 +41,6 @@ export class SasignadosComponent implements OnInit {
         this.showinfo = true;
         console.log("ocurrio un fallo")
       }
-     
     });
   }
 

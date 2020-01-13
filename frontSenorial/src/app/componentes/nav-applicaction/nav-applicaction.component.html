@@ -2,15 +2,15 @@
     <mat-sidenav #drawer mode="side" class="sidenav deep-purple darken-1" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list id="menu">
-            <a (click)="hideShow()" mat-list-item [routerLink]="['']"> Inicio <mat-icon  class="pl-2">home</mat-icon></a>
+            <a (click)="hideShow()" mat-list-item routerLink="/" routerLinkActive="active"> Inicio <mat-icon  class="pl-2">home</mat-icon></a>
             <hr>
-            <a (click)="hideShow()" mat-list-item [routerLink]="['colaboradores']"> Colaboradores<mat-icon class="pl-2">people_outline</mat-icon></a>
+            <a (click)="hideShow()" mat-list-item routerLink="/colaboradores" routerLinkActive="active"> Colaboradores<mat-icon class="pl-2">people_outline</mat-icon></a>
             <hr>
-            <a (click)="hideShow()" mat-list-item [routerLink]="['asignados']">Servicios Asignados <mat-icon class="pl-2">visibility</mat-icon></a>
+            <a (click)="hideShow()" mat-list-item routerLink="/asignados" routerLinkActive="active">Servicios Asignados <mat-icon class="pl-2">visibility</mat-icon></a>
             <hr>
-            <a (click)="hideShow()" mat-list-item [routerLink]="['realizados']"> Servicios Realizados <mat-icon class="pl-2">done_outline</mat-icon></a>
+            <a (click)="hideShow()" mat-list-item routerLink="/realizados" routerLinkActive="active"> Servicios Realizados <mat-icon class="pl-2">done_outline</mat-icon></a>
             <hr>
-            <a (click)="hideShow()" mat-list-item [routerLink]="['usuarios']"> Usuarios <mat-icon class="pl-2">supervisor_account</mat-icon> </a>
+            <a (click)="hideShow()" mat-list-item routerLink="/usuarios" routerLinkActive="active"> Usuarios <mat-icon class="pl-2">supervisor_account</mat-icon> </a>
             <hr>
 
         </mat-nav-list>
