@@ -7,14 +7,15 @@ import { SrealizadosComponent } from './componentes/srealizados/srealizados.comp
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { UsersComponent } from './componentes/users/users.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { AuthGuard } from './_guards';
 
 const routes: Routes = [
     { path: '', component: ContainerComponent, children:[
-        { path: 'colaboradores', component: ColaboradoresComponent },
-        { path: 'asignados', component: SasignadosComponent },
-        { path: 'realizados', component: SrealizadosComponent },
-        { path: 'usuarios', component: UsersComponent },
-        { path: '', component: InicioComponent },
+        { path: 'colaboradores', component: ColaboradoresComponent, canActivate: [AuthGuard] },
+        { path: 'asignados', component: SasignadosComponent,canActivate: [AuthGuard] },
+        { path: 'realizados', component: SrealizadosComponent,canActivate: [AuthGuard] },
+        { path: 'usuarios', component: UsersComponent,canActivate: [AuthGuard] },
+        { path: '', component: InicioComponent ,canActivate: [AuthGuard]},
     ]},
     { path: 'login', component: LoginComponent,},
    
