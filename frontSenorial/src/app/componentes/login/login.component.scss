@@ -1,0 +1,19 @@
+.clog {
+    -webkit-box-shadow: 1px 1px 18px 7px rgba(0, 0, 0, 0.61);
+    -moz-box-shadow: 1px 1px 18px 7px rgba(0, 0, 0, 0.61);
+    box-shadow: 1px 1px 18px 7px rgba(0, 0, 0, 0.61);
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 0px solid #000000;
+}
+
+.view {
+    background: url("https://t4.ftcdn.net/jpg/03/08/95/95/240_F_308959567_B7IBw8bVN9HegNo3RWJAadDJDNzGLUtM.jpg")no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.navbar {
+    z-index: 1;
+}

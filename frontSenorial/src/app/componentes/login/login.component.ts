@@ -14,12 +14,13 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
     submitted = false;
-    data: Admin = new Admin();
+    data: Admin;
     error = '';
-
-    constructor(private formBuilder: FormBuilder,private websocket:WebsocketService, private route: ActivatedRoute, private router: Router,
+user:string;
+password:string
+    constructor(private formBuilder: FormBuilder, private websocket: WebsocketService, private route: ActivatedRoute, private router: Router,
         private authenticationService: AuthenticationService) {
-        // redirect to home if already logged in
+        this.data = new Admin();
         if (this.authenticationService.currentAdminValue) {
             this.router.navigate(['/']);
         }
@@ -39,10 +40,9 @@ export class LoginComponent implements OnInit {
         if (this.loginForm.invalid) {
             return;
         }
-
         this.loading = true;
-        this.data.user = this.f.username.value
-        this.data.password = this.f.password.value
+        this.data.password = this.password;
+        this.data.user =  this.user;
         this.authenticationService.loginAdmin(this.data).subscribe(res => {
             if (res.responseCode == 200) {
                 this.router.navigate(['/']);
@@ -53,6 +53,15 @@ export class LoginComponent implements OnInit {
                 this.error = 'Usuario o Contraseña equivocados';
                 this.loading = false;
             }
-        })
+        },
+        err => {
+          console.log("Error occured" + err);
+        }
+      );
     }
+
+    cleaninput() {
+        this.password = "";
+        this.user = "";
+      }
 }
