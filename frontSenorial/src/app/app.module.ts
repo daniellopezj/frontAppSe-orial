@@ -22,6 +22,7 @@ import { SasignadosComponent } from './componentes/sasignados/sasignados.compone
 import { SelectColaboratorComponent } from './componentes/select-colaborator/select-colaborator.component';
 import { UsersComponent } from './componentes/users/users.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { ChangePassComponent } from './componentes/change-pass/change-pass.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LoginComponent } from './componentes/login/login.component';
     SelectColaboratorComponent,
     UsersComponent,
     LoginComponent,
+    ChangePassComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,7 @@ import { LoginComponent } from './componentes/login/login.component';
     FormsModule
   ],
   entryComponents:[
-     IUPersonComponent, SelectColaboratorComponent
+     IUPersonComponent, SelectColaboratorComponent, ChangePassComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-﻿import { Admin } from './../models/Admin';
+﻿import { Admin } from '../models/Admin';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -23,10 +23,16 @@ export class AuthenticationService {
         return this.http.post<StatusServices>(`http://localhost:3000/loginAdmin`, admin)
     }
 
+    public changePassword(object:Object):Observable<StatusServices>{
+  console.log(object)
+        return this.http.put<StatusServices>(`http://localhost:3000/actualizarpassword`, object)
+
+    }
     changecCurrentAdmin(any: any) {
         localStorage.setItem('currentAdmin', JSON.stringify(any));
         this.currentAdminSubject.next(any);
     }
+
   
     logout() {
         // remove Admin from local storage to log Admin out

@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     password: string
 
     constructor(private formBuilder: FormBuilder, private websocket: WebsocketService, private route: ActivatedRoute, private router: Router,
-        private authenticationService: AuthenticationService,private cdRef:ChangeDetectorRef) {
+        private authenticationService: AuthenticationService, private cdRef: ChangeDetectorRef) {
         this.data = new Admin();
         if (this.authenticationService.currentAdminValue) {
             this.router.navigate(['/']);
@@ -53,9 +53,7 @@ export class LoginComponent implements OnInit {
                 localStorage.removeItem('currentAdmin');
                 this.error = 'Usuario o Contraseña equivocados';
                 this.loading = false;
-                this.user = '';
-                this.password = '';
-                this.cdRef.detectChanges();
+                this.clear();
             }
         },
             err => {
@@ -64,11 +62,9 @@ export class LoginComponent implements OnInit {
         );
     }
 
-   /* ngAfterViewChecked()
-    {
-      console.log( "! changement de la date du composant !" );
-      this.user = '';
-      this.password = '';
-      this.cdRef.detectChanges();
-    }*/
+    clear() {
+        this.user = '';
+        this.password = '';
+        this.cdRef.detectChanges();
+    }
 }
