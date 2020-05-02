@@ -22,6 +22,7 @@ import { SasignadosComponent } from './componentes/sasignados/sasignados.compone
 import { SelectColaboratorComponent } from './componentes/select-colaborator/select-colaborator.component';
 import { UsersComponent } from './componentes/users/users.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { APP_BASE_HREF } from '@angular/common';
 import { ChangePassComponent } from './componentes/change-pass/change-pass.component';
 
 @NgModule({
@@ -57,7 +58,7 @@ import { ChangePassComponent } from './componentes/change-pass/change-pass.compo
   entryComponents:[
      IUPersonComponent, SelectColaboratorComponent, ChangePassComponent
   ],
-  providers: [],
+  providers: [{provide:APP_BASE_HREF,useValue:''}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

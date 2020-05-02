@@ -1,4 +1,5 @@
-﻿import { Admin } from '../models/Admin';
+﻿import { environment } from './../../environments/environment';
+import { Admin } from '../models/Admin';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -20,12 +21,13 @@ export class AuthenticationService {
     }
 
     public loginAdmin(admin: Object): Observable<StatusServices> {
-        return this.http.post<StatusServices>(`http://localhost:3000/loginAdmin`, admin)
+    
+        return this.http.post<StatusServices>(`${environment.URL_SERVER}/loginAdmin`, admin)
     }
 
     public changePassword(object:Object):Observable<StatusServices>{
   console.log(object)
-        return this.http.put<StatusServices>(`http://localhost:3000/actualizarpassword`, object)
+        return this.http.put<StatusServices>(`${environment.URL_SERVER}/actualizarpassword`, object)
 
     }
     changecCurrentAdmin(any: any) {
