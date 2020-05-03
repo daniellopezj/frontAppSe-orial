@@ -24,9 +24,11 @@ export class SasignadosComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.showinfo = false
     this.servicePerson.requestPerson().subscribe(res => {
       if (res.responseCode == 200) {
         this.listColaborator = res.object;
+      this.showinfo = true
       }
     });
   }
@@ -35,8 +37,10 @@ export class SasignadosComponent implements OnInit {
     this.showinfo = false;
     this.cleanService.requestServiceAssigned().subscribe(res => {
       if (res.responseCode == 200) {
-        this.showinfo = true;
         this.listInfo = res.object;
+        this.showinfo = true;
+        console.log(this.listInfo)
+
       } else {
         this.showinfo = true;
         console.log("ocurrio un fallo")

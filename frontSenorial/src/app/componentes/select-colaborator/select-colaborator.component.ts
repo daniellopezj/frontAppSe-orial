@@ -19,7 +19,6 @@ export class SelectColaboratorComponent implements OnInit {
   item: any;
   submitted: boolean;
 
-
   constructor(private formBuilder: FormBuilder, private _router: Router,private serviceClean:ServiceCleanService,
     public dialogRef: MatDialogRef<SelectColaboratorComponent>,
     @Inject(MAT_DIALOG_DATA) public componentAsignados: SasignadosComponent) {
@@ -38,6 +37,9 @@ export class SelectColaboratorComponent implements OnInit {
     this.listColaborator = this.componentAsignados.listSelect;
     this.item  =  this.componentAsignados.item;
     this.iColaborator = this.componentAsignados.iColaborator;
+    console.log(this.listColaborator)
+    console.log(this.item)
+    console.log(this.iColaborator)
   }
 
   changeColaborator() {
@@ -45,7 +47,9 @@ export class SelectColaboratorComponent implements OnInit {
     if (this.selectChange.invalid) {
       return;
     }
+    console.log(this.colaboradorSelectted)
     this.item.asignados[this.iColaborator] =  this.colaboradorSelectted;
+   
     this.serviceClean.UpdateService(this.item).subscribe(res =>{
       if (res['status'] == 200) {
         alert("Cambio Exitoso")
