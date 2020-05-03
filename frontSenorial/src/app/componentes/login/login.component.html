@@ -15,14 +15,14 @@
                     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
                             <label for="username"> <strong>Usuario</strong></label>
-                            <input type="text" formControlName="username" class="form-control" [(ngModel)]="user" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                            <input type="text" formControlName="username" class="form-control" [(ngModel)]="usuario" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                             <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                                 <div *ngIf="f.username.errors.required">Usuario es requerido</div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="password"> <strong>Contraseña</strong></label>
-                            <input type="password" formControlName="password" class="form-control" [(ngModel)]="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <input type="password" formControlName="password" class="form-control" [(ngModel)]="contrasenia" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                                 <div *ngIf="f.password.errors.required">Contraseña es requerida</div>
                             </div>

@@ -9,8 +9,8 @@
             <form [formGroup]="selectChange" (ngSubmit)="changeColaborator()">
                 <mat-form-field class="col-md-11" required>
                     <mat-label>Selecciona Colaborador</mat-label>
-                    <mat-select placeholder="Colaboradores" [(value)]="colaboradorSelectted" formControlName="selection" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.selection.errors }">
-                        <mat-option *ngFor="let colaborador of listColaborator" [(value)]="colaborador">{{colaborador.nombre}} {{colaborador.apellido}}</mat-option>
+                    <mat-select placeholder="Colaboradores" [(ngModel)]="colaboradorSelectted" formControlName="selection" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.selection.errors }">
+                        <mat-option *ngFor="let colaborador of listColaborator" [value]="colaborador">{{colaborador.nombre}} {{colaborador.apellido}}</mat-option>
                     </mat-select>
                     <div *ngIf="submitted && f.selection.errors" class="invalid-feedback">
                         <div *ngIf="f.selection.errors.required"></div>

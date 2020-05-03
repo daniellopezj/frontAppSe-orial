@@ -1,7 +1,7 @@
 <mat-spinner class="spinner" *ngIf="!showinfo"></mat-spinner>
 <div *ngIf="showinfo" class="container ">
-    <div class="row" *ngIf="listInfo?.length > 0 then showlist else showCard "></div>
-    <ng-template #showlist>
+    <div class="row" *ngIf="listInfo?.length > 0 then showlistData else showEmptyCard "></div>
+    <ng-template #showlistData>
         <div class="container">
             <h2>
                 <Strong>Servicios Pendientes</Strong>
@@ -33,41 +33,34 @@
                                 <p>Horario: <strong> {{item.horario}} </strong></p>
 
                                 <p>Colaboradores: <strong> {{item.nColaboradores}} </strong></p>
-                                <!--   <div *ngIf="item.nColaboradores; then colaboradores else vehiculos"></div>
-                                <ng-template #colaboradores>
-                                    <p>Colaboradores: <strong> {{item.nColaboradores}} </strong></p>
-                                </ng-template>
-                                <ng-template #vehiculos>
-                                    <p>Vehiculos:<strong> {{item.nCarros}} </strong> </p>
-                                </ng-template>
-                                -->
                                 <hr style="border-color:black" class="col-md-10">
                             </mdb-card-title>
                         </div>
                     </div>
                     <p>Valor total: <strong>$ {{item.tipoServicio.valor}} </strong></p>
                     <form [formGroup]="formAssigned">
-                        <div formArrayName="selectArray">
+                        <div formArrayName="selectArrayColaborators">
                             <div [formGroupName]="i">
                                 <div *ngIf="item.nColaboradores>1; then SelectColaboradoresMas else  SelectColaboradores1"></div>
                                 <ng-template #SelectColaboradoresMas>
                                     <mat-form-field class="col-md-4 col-lg-4 col-sm-10 col-xs-12">
-                                        <mat-select placeholder="Colaboradores" formControlName="selection" class="form-control" (selectionChange)="changed(item.nColaboradores,i)" [ngClass]="{ 'is-invalid': submitted[i] && selectArray.controls[i].get('selection').errors }" multiple>
+                                        <mat-select placeholder="Colaboradores" formControlName="selectionColaborators" class="form-control" (selectionChange)="changed(item.nColaboradores,i)" [ngClass]="{ 'is-invalid': submitted[i] && selectArrayColaborators.controls[i].get('selectionColaborators').errors }"
+                                            multiple>
                                             <mat-option *ngFor="let colaborador of listColaboradores" [value]="colaborador">{{colaborador.nombre}} {{colaborador.apellido}}</mat-option>
                                         </mat-select>
-                                        <div *ngIf="submitted[i] && selectArray.controls[i].get('selection').errors" class="invalid-feedback">
-                                            <div *ngIf="selectArray.controls[i].get('selection').errors">Campo obligatorio</div>
+                                        <div *ngIf="submitted[i] && selectArrayColaborators.controls[i].get('selectionColaborators').errors" class="invalid-feedback">
+                                            <div *ngIf="selectArrayColaborators.controls[i].get('selectionColaborators').errors">Campo obligatorio</div>
                                         </div>
                                     </mat-form-field>
                                 </ng-template>
                                 <ng-template #SelectColaboradores1>
                                     <mat-form-field class="col-md-4 col-lg-4 col-sm-10 col-xs-12" required>
                                         <mat-label>Selecciona Colaborador</mat-label>
-                                        <mat-select placeholder="Colaboradores" formControlName="selection" class="form-control" [ngClass]="{ 'is-invalid': submitted[i] && selectArray.controls[i].get('selection').errors }">
-                                            <mat-option *ngFor="let colaborador of listColaboradores" [(value)]="colaborador">{{colaborador.nombre}} {{colaborador.apellido}}</mat-option>
+                                        <mat-select placeholder="Colaboradores" formControlName="selectionColaborators" class="form-control" [ngClass]="{ 'is-invalid': submitted[i] && selectArrayColaborators.controls[i].get('selectionColaborators').errors }">
+                                            <mat-option *ngFor="let colaborador of listColaboradores" [value]="colaborador">{{colaborador.nombre}} {{colaborador.apellido}}</mat-option>
                                         </mat-select>
-                                        <div *ngIf="submitted[i] && selectArray.controls[i].get('selection').errors" class="invalid-feedback">
-                                            <div *ngIf="selectArray.controls[i].get('selection').errors">Campo obligatorio</div>
+                                        <div *ngIf="submitted[i] && selectArrayColaborators.controls[i].get('selectionColaborators').errors" class="invalid-feedback">
+                                            <div *ngIf="selectArrayColaborators.controls[i].get('selectionColaborators').errors">Campo obligatorio</div>
                                         </div>
                                     </mat-form-field>
                                 </ng-template>
@@ -85,7 +78,7 @@
             <br><br>
         </div>
     </ng-template>
-    <ng-template #showCard>
+    <ng-template #showEmptyCard>
         <div class="container">
             <h2>
                 <Strong>Servicios Pendientes</Strong>

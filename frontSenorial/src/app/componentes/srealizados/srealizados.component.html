@@ -48,6 +48,9 @@
                                         <p>tipo de Servicio: <strong> {{item.tipoServicio.nombre}} </strong></p>
                                         <p>Horario: <strong> {{item.horario}} </strong></p>
                                         <div *ngIf="item.nColaboradores; then colaboradores else vehiculos"></div>
+                                        <ng-template #colaboradores>
+                                            <p>Colaboradores: <strong> {{item.nColaboradores}} </strong></p>
+                                        </ng-template>
                                         <ng-template #vehiculos>
                                             <p>Vehiculos:<strong> {{item.nCarros}} </strong> </p>
                                         </ng-template>

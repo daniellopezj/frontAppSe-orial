@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
     submitted = false;
     data: Admin;
     error = '';
-    user: string;
-    password: string
+    usuario: string;
+    contrasenia: string
 
     constructor(private formBuilder: FormBuilder, private websocket: WebsocketService, private route: ActivatedRoute, private router: Router,
         private authenticationService: AuthenticationService, private cdRef: ChangeDetectorRef) {
@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
-            username: ['', Validators.required],
-            password: ['', Validators.required]
+            usuarioname: ['', Validators.required],
+            contrasenia: ['', Validators.required]
         });
     }
 
@@ -42,8 +42,8 @@ export class LoginComponent implements OnInit {
             return;
         }
         this.loading = true;
-        this.data.password = this.password;
-        this.data.user = this.user;
+        this.data.password = this.contrasenia;
+        this.data.user = this.usuario;
         this.authenticationService.loginAdmin(this.data).subscribe(res => {
             if (res.responseCode == 200) {
                 this.router.navigate(['/']);
@@ -63,8 +63,8 @@ export class LoginComponent implements OnInit {
     }
 
     clear() {
-        this.user = '';
-        this.password = '';
+        this.usuario = '';
+        this.contrasenia = '';
         this.cdRef.detectChanges();
     }
 }

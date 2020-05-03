@@ -15,7 +15,6 @@ export class InicioComponent implements OnInit {
   listColaboradores: any;
   mascolaboradores = new FormControl();
   multipleCol: String;
-  selected = '';
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   mySelections: string[];
   formAssigned: FormGroup;
@@ -37,7 +36,7 @@ export class InicioComponent implements OnInit {
       }
     });
     this.formAssigned = this.formBuilder.group({
-      selectArray: this.formBuilder.array(
+      selectArrayColaborators: this.formBuilder.array(
         [this.createEmpFormGroup()],
         [Validators.required])
     });
@@ -45,13 +44,13 @@ export class InicioComponent implements OnInit {
 
   get f() { return this.formAssigned.controls; }
 
-  get selectArray(): FormArray {
-    return this.formAssigned.get('selectArray') as FormArray;
+  get selectArrayColaborators(): FormArray {
+    return this.formAssigned.get('selectArrayColaborators') as FormArray;
   }
 
   createEmpFormGroup() {
     return this.formBuilder.group({
-      selection: ['', [Validators.required]],
+      selectionColaborators: ['', [Validators.required]],
     })
   }
 
@@ -61,7 +60,6 @@ export class InicioComponent implements OnInit {
       if (res.responseCode == 200) {
         this.showinfo = true;
         this.listInfo = res.object;
-        console.log(this.listInfo)
         this.createFormArray();
       } else {
         this.showinfo = true;
@@ -71,8 +69,8 @@ export class InicioComponent implements OnInit {
   }
 
   createFormArray() {
-    while (this.selectArray.length !== 0) {
-      this.selectArray.removeAt(0)
+    while (this.selectArrayColaborators.length !== 0) {
+      this.selectArrayColaborators.removeAt(0)
     }
     for (let entry of this.listInfo) {
       entry.asignados = new Array();
@@ -81,30 +79,38 @@ export class InicioComponent implements OnInit {
   }
 
   changed(nColaboradores, id) {
-    console.log(this.selectArray.controls[id].get('selection').value)
-    if (this.selectArray.controls[id].get('selection').value.length <= nColaboradores) {
-      this.mySelections = this.selectArray.controls[id].get('selection').value;
+    console.log(this.selectArrayColaborators.controls[id].get('selectionColaborators').value)
+    if (this.selectArrayColaborators.controls[id].get('selectionColaborators').value.length <= nColaboradores) {
+      this.mySelections = this.selectArrayColaborators.controls[id].get('selectionColaborators').value;
     } else {
-      this.selectArray.controls[id].get('selection').setValue(this.mySelections);
+      this.selectArrayColaborators.controls[id].get('selectionColaborators').setValue(this.mySelections);
     }
   }
 
   addFormControl() {
     let fg = this.createEmpFormGroup();
-    this.selectArray.push(fg);
+    this.selectArrayColaborators.push(fg);
     this.submitted.push(false)
   }
 
   asigned(item, id: number) {
     this.submitted[id] = true;
-    if (this.selectArray.controls[id].get('selection').value == "") {
+    if (this.selectArrayColaborators.controls[id].get('selectionColaborators').value == "") {
       return;
     }
+    let value = this.selectArrayColaborators.controls[id].get('selectionColaborators').value
     if (this.valueAsigned[0] !== undefined) {
-      item.asignados[0] = this.selectArray.controls[id].get('selection').value
+      item.asignados[0] = value
       this.valueAsigned[0] = undefined;
     } else {
-      item.asignados = this.selectArray.controls[id].get('selection').value
+      if(value instanceof Array){
+        item.asignados = value
+        console.log(item.asignados)
+      }else{
+        item.asignados[0] = value
+        console.log(item.asignados)
+      }
+     
     }
     item.estado = "asignado";
     this.updateStatusService(item,id);
@@ -118,7 +124,7 @@ export class InicioComponent implements OnInit {
         if (index > -1) {
           this.listInfo.splice(index, 1);
         }
-        this.selectArray.removeAt(id)
+        this.selectArrayColaborators.removeAt(id)
       } else {
         alert("Ocurrio un error")
       }
@@ -136,7 +142,7 @@ export class InicioComponent implements OnInit {
           if (index > -1) {
             this.listInfo.splice(index, 1);
           }
-          this.selectArray.removeAt(id)
+          this.selectArrayColaborators.removeAt(id)
         } else {
           alert("Ocurrio un error")
         }
