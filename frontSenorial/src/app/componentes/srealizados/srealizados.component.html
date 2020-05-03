@@ -24,7 +24,7 @@
                             </div>
                             <div class="col-md-4 col-sm-12 col-xs-12">
                                 <h5> Cliente <strong> {{item.nombre}} {{item.apellido}} </strong></h5>
-                                <h5> Valor total: <strong>$ {{item.valor}} </strong></h5>
+                                <h5> Valor total: <strong>$ {{item.tipoServicio.valor}} </strong></h5>
                             </div>
                         </div>
 
@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="col-md-4 col-sm-12 col-xs-12">
                                     <mdb-card-title>
-                                        <p>tipo de Servicio: <strong> {{item.tipoServicio}} </strong></p>
+                                        <p>tipo de Servicio: <strong> {{item.tipoServicio.nombre}} </strong></p>
                                         <p>Horario: <strong> {{item.horario}} </strong></p>
                                         <div *ngIf="item.nColaboradores; then colaboradores else vehiculos"></div>
                                         <ng-template #vehiculos>
@@ -103,7 +103,7 @@
                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                     <mdb-card-title>
 
-                                        <p>tipo de Servicio: <strong> {{item.tipoServicio}} </strong></p>
+                                        <p>tipo de Servicio: <strong> {{item.tipoServicio.nombre}} </strong></p>
 
                                         <p>Horario: <strong> {{item.horario}} </strong></p>
                                         <div *ngIf="item.nColaboradores; then colaboradores else vehiculos"></div>
