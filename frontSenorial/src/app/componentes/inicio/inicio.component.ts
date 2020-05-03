@@ -61,6 +61,7 @@ export class InicioComponent implements OnInit {
       if (res.responseCode == 200) {
         this.showinfo = true;
         this.listInfo = res.object;
+        console.log(this.listInfo)
         this.createFormArray();
       } else {
         this.showinfo = true;
@@ -80,6 +81,7 @@ export class InicioComponent implements OnInit {
   }
 
   changed(nColaboradores, id) {
+    console.log(this.selectArray.controls[id].get('selection').value)
     if (this.selectArray.controls[id].get('selection').value.length <= nColaboradores) {
       this.mySelections = this.selectArray.controls[id].get('selection').value;
     } else {

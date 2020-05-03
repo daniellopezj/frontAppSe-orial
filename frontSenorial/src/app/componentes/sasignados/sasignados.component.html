@@ -28,7 +28,7 @@
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <mdb-card-title>
                                 <h5>Servicio de: <strong> {{item.nombreCategoria}} </strong> </h5>
-                                <p>tipo de Servicio: <strong> {{item.tipoServicio}} </strong></p>
+                                <p>tipo de Servicio: <strong> {{item.tipoServicio.nombre}} </strong></p>
                                 <p>Fecha de Servicio: <strong> {{item.fecha_servicio}} </strong></p>
                                 <p>Horario: <strong> {{item.horario}} </strong></p>
                                 <div *ngIf="item.nColaboradores; then colaboradores else vehiculos"></div>
@@ -42,7 +42,7 @@
                             </mdb-card-title>
                         </div>
                     </div>
-                    <p>Valor total: <strong>$ {{item.valor}} </strong></p>
+                    <p>Valor total: <strong>$ {{item.tipoServicio.valor}} </strong></p>
                     <hr style="border-color:black" class="col-md-10">
                     <br>
                     <h5>Colaboradores</h5>

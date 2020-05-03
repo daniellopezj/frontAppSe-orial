@@ -28,7 +28,7 @@
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <mdb-card-title>
                                 <h5>Servicio de: <strong> {{item.nombreCategoria}} </strong> </h5>
-                                <p>tipo de Servicio: <strong> {{item.tipoServicio}} </strong></p>
+                                <p>tipo de Servicio: <strong> {{item.tipoServicio.nombre}} </strong></p>
                                 <p>Fecha de Servicio: <strong> {{item.fecha_servicio}} </strong></p>
                                 <p>Horario: <strong> {{item.horario}} </strong></p>
 
@@ -45,7 +45,7 @@
                             </mdb-card-title>
                         </div>
                     </div>
-                    <p>Valor total: <strong>$ {{item.valor}} </strong></p>
+                    <p>Valor total: <strong>$ {{item.tipoServicio.valor}} </strong></p>
                     <form [formGroup]="formAssigned">
                         <div formArrayName="selectArray">
                             <div [formGroupName]="i">
@@ -63,7 +63,7 @@
                                 <ng-template #SelectColaboradores1>
                                     <mat-form-field class="col-md-4 col-lg-4 col-sm-10 col-xs-12" required>
                                         <mat-label>Selecciona Colaborador</mat-label>
-                                        <mat-select placeholder="Colaboradores" [(value)]="valueAsigned[0]" formControlName="selection" class="form-control" [ngClass]="{ 'is-invalid': submitted[i] && selectArray.controls[i].get('selection').errors }">
+                                        <mat-select placeholder="Colaboradores" formControlName="selection" class="form-control" [ngClass]="{ 'is-invalid': submitted[i] && selectArray.controls[i].get('selection').errors }">
                                             <mat-option *ngFor="let colaborador of listColaboradores" [(value)]="colaborador">{{colaborador.nombre}} {{colaborador.apellido}}</mat-option>
                                         </mat-select>
                                         <div *ngIf="submitted[i] && selectArray.controls[i].get('selection').errors" class="invalid-feedback">
