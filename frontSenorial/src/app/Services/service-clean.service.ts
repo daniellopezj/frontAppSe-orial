@@ -24,6 +24,7 @@ export class ServiceCleanService {
 
 
   public requestServiceAssigned(): Observable<StatusServices> {
+    console.log(`${environment.URL_SERVER}/asignados/`)
     return this.http.get<StatusServices>(`${environment.URL_SERVER}/asignados/`);
   }
 
