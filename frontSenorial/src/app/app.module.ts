@@ -24,6 +24,7 @@ import { UsersComponent } from './componentes/users/users.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { APP_BASE_HREF } from '@angular/common';
 import { ChangePassComponent } from './componentes/change-pass/change-pass.component';
+import { NotFoundComponent } from './componentes/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ChangePassComponent } from './componentes/change-pass/change-pass.compo
     UsersComponent,
     LoginComponent,
     ChangePassComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

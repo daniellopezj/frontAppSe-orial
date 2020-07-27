@@ -20,6 +20,7 @@ export class SrealizadosComponent implements OnInit {
 
   ngOnInit() {
     this.webSocket.listen('finish').subscribe((data) => {
+      console.log("entro al socket")
       this.loadInfo();
     })
     if (localStorage.getItem("listTerminados")) {

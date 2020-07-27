@@ -28,6 +28,7 @@ export class InicioComponent implements OnInit {
   ngOnInit() {
     this.websocket.listen('showInfoPending').subscribe((data) => {
       this.listInfo = data;
+      console.log("showInfoPending")
       this.createFormArray();
     })
     this.servicePerson.requestPerson().subscribe(res => {

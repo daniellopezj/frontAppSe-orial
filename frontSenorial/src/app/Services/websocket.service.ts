@@ -9,11 +9,13 @@ import * as io from 'socket.io-client';
 
 export class WebsocketService {
 
-  private url = environment.URL_SOCKET;
+  private url = environment.URL_SERVER;
+
   private socket: any;
 
   constructor() {
     this.socket = io(this.url);
+    console.log(this.url)
   }
 
   listen(eventName: String) {

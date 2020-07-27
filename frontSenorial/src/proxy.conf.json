@@ -1,0 +1,6 @@
+{
+    "/": {
+        "target": "https://appsenorial.herokuapp.com",
+        "secure": false
+    }
+}

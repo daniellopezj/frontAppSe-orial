@@ -8,6 +8,7 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
 import { UsersComponent } from './componentes/users/users.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { AuthGuard } from './_guards';
+import { NotFoundComponent } from './componentes/not-found/not-found.component';
 
 const routes: Routes = [
     { path: '', component: ContainerComponent, children:[
@@ -18,7 +19,7 @@ const routes: Routes = [
         { path: '', component: InicioComponent ,canActivate: [AuthGuard]},
     ]},
     { path: 'login', component: LoginComponent,},
-   
+    { path: '**', component: NotFoundComponent,},
 ];
 
 @NgModule({
